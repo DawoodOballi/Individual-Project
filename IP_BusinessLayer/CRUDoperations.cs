@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using IP_Booking_Overtime;
+using Microsoft.Data.SqlClient;
 
 namespace IP_BusinessLayer
 {
@@ -16,7 +17,7 @@ namespace IP_BusinessLayer
             }
         }
 
-        public void SetEnteredUser(object enteredUser)
+        public void SetEnteredUserEqualTo(object enteredUser)
         {
             EnteredUser = (Users)enteredUser;
         }
