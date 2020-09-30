@@ -29,7 +29,7 @@ namespace OvertimeWPF
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            
         }
     }
 }

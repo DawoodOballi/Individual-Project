@@ -1,12 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using IP_Booking_Overtime;
 
 namespace IP_BusinessLayer
 {
-    class CRUDoperations
+    public class CRUDoperations
     {
-        static void Main(string[] args)
+        public Users EnteredUser { get; set; }
+        public List<Users> RetrieveUsers()
         {
-            Console.WriteLine("Hello World!");
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                return db.Users.ToList();
+            }
+        }
+
+        public void SetEnteredUser(object enteredUser)
+        {
+            EnteredUser = (Users)enteredUser;
         }
     }
 }
