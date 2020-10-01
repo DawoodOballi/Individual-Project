@@ -25,14 +25,13 @@ namespace BusinessLayerTesting
             }
         }
 
-        [TestCase("Nish", null)]
-        //[TestCase("Dawood", )]
-        public void WhenUserNameEnteredDoesExistsInTheDatabase(string user, object exp)
+        [Test]
+        public void WhenUserNameEnteredDoesExistsInTheDatabase()
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var input = _crud.GetUserForUserName(user);
-                Assert.AreEqual(exp, input);
+                var output = _crud.GetUserForUserName("Dawood");
+                Assert.AreEqual("Dawood", output.UserName);
             }
         }
     }

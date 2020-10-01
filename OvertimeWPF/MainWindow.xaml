@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:OvertimeWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" Background="#FF8DBDD8">
-    <Border Background="White" Margin="0,40,0,0">
+    <Viewbox Stretch="Uniform" StretchDirection="Both">
+        <Border Background="White" Margin="0,40,0,0">
         <Grid Margin="0,32,0,0">
             <TextBox Text="" Name="txtHelloUser" Background="White" Foreground="#FF8DBDD8" FontSize="30" Margin="286,-72,286,394" TextChanged="txtHelloUser_TextChanged"/>
             <Button Name="btnLogout" Content="Logout" Width="60" Height="30" Background="White" Foreground="#FF8DBDD8" Click="btnLogout_Click" Margin="10,-67,730,399"/>
@@ -16,4 +17,5 @@
             </Grid>
         </Grid>
     </Border>
+    </Viewbox>
 </Window>
