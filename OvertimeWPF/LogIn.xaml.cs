@@ -22,7 +22,7 @@ namespace OvertimeWPF
     /// </summary>
     public partial class LogIn : Window
     {
-        public CRUDoperations _crudOperation;
+        public CRUDoperations _crudOperation = new CRUDoperations();
         public LogIn()
         {
             InitializeComponent();
@@ -31,25 +31,23 @@ namespace OvertimeWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new IndividualProject_DatabaseContext())
+            string userText = txtUsername.Text;
+            var user = _crudOperation.GetUserForUserName(userText);
+            if (user != null)
             {
-                var user = db.Users.Select(u => u.UserName);
-                if (user.Contains(txtUsername.Text))
-                {
-                    MainWindow main = new MainWindow();
-                    main.ShowDialog();
-                    Close();
-                }
-                else
-                {
-                    MessageBox.Show("The Username entered is incorrect");
-                }
+                MainWindow main = new MainWindow();
+                main.ShowDialog();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("The Username entered is incorrect");
             }
         }
 
         private void txtUsername_TextChanged(object sender, TextChangedEventArgs e)
         {
-        
+
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting;
 using IP_Booking_Overtime;
 using Microsoft.Data.SqlClient;
 
@@ -17,9 +18,13 @@ namespace IP_BusinessLayer
             }
         }
 
-        public void SetEnteredUserEqualTo(object enteredUser)
+        public Users GetUserForUserName(string enteredUser)
         {
-            EnteredUser = (Users)enteredUser;
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
+                return user;
+            }
         }
     }
 }
