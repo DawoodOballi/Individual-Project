@@ -33,7 +33,7 @@ namespace OvertimeWPF
         {
             string userText = txtUsername.Text;
             var user = _crudOperation.GetUserForUserName(userText);
-            if (user != null)
+            if (_crudOperation.EnteredUser != null)
             {
                 MainWindow main = new MainWindow();
                 main.ShowDialog();

@@ -23,6 +23,7 @@ namespace IP_BusinessLayer
             using (var db = new IndividualProject_DatabaseContext())
             {
                 var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
+                EnteredUser = user;
                 return user;
             }
         }
