@@ -59,27 +59,27 @@ namespace OvertimeWPF
 
         private void btnMonday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.Items = _crudOperations.
+            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
         }
 
         private void btnTuesday_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
         }
 
         private void btnWednesday_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
         }
 
         private void btnThursday_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
         }
 
         private void btnFriday_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
         }
     }
 }
