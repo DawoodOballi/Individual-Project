@@ -27,5 +27,50 @@ namespace IP_BusinessLayer
                 return user;
             }
         }
+
+        public List<Overtime> PopulateOvertimeForMonday()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.Day == "Monday");
+                return user.ToList();
+            }
+        }
+
+        public List<Overtime> PopulateOvertimeForTuesday()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.Day == "Tuesday");
+                return user.ToList();
+            }
+        }
+
+        public List<Overtime> PopulateOvertimeForWednesday()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.Day == "Wednesday");
+                return user.ToList();
+            }
+        }
+
+        public List<Overtime> PopulateOvertimeForThursday()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.Day == "Thursday");
+                return user.ToList();
+            }
+        }
+
+        public List<Overtime> PopulateOvertimeForFriday()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.Day == "Friday");
+                return user.ToList();
+            }
+        }
     }
 }

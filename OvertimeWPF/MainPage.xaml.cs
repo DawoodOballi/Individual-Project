@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IP_BusinessLayer;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows;
@@ -18,6 +19,7 @@ namespace OvertimeWPF
     /// </summary>
     public partial class MainPage : Page
     {
+        CRUDoperations _crudOperations = new CRUDoperations();
         public MainPage(string user)
         {
             InitializeComponent();
@@ -51,6 +53,31 @@ namespace OvertimeWPF
         }
 
         private void btnAvailableOvertime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMonday_Click(object sender, RoutedEventArgs e)
+        {
+            ListBox.Items = _crudOperations.
+        }
+
+        private void btnTuesday_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnWednesday_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnThursday_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnFriday_Click(object sender, RoutedEventArgs e)
         {
 
         }
