@@ -21,7 +21,7 @@ namespace OvertimeWPF
         public MainPage(string user)
         {
             InitializeComponent();
-            txtHelloUser.Text = "Hello" + user;
+            txtHelloUser.Text = $"Welcome {user}!";
         }
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
@@ -31,8 +31,7 @@ namespace OvertimeWPF
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
         {
-            LogInPage login = new LogInPage();
-            frame.Content = login;
+            frame.Content = new LogInPage();
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -43,6 +42,16 @@ namespace OvertimeWPF
         private void txtHelloUser_TextChanged(object sender, TextChangedEventArgs e)
         {
 
+
+        }
+
+        private void btnBookedOvertime_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnAvailableOvertime_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }
