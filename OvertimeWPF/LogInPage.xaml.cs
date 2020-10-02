@@ -1,8 +1,6 @@
 ﻿using IP_BusinessLayer;
-using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -11,33 +9,30 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using IP_Booking_Overtime;
-using System.Linq;
 
 namespace OvertimeWPF
 {
     /// <summary>
-    /// Interaction logic for LogIn.xaml
+    /// Interaction logic for LogInPage.xaml
     /// </summary>
-    public partial class LogIn : Window
+    public partial class LogInPage : Page
     {
         public CRUDoperations _crudOperation = new CRUDoperations();
-        public LogIn()
+        public LogInPage()
         {
             InitializeComponent();
-
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             string userText = txtUsername.Text;
-            var user = _crudOperation.GetUserForUserName(userText);
+            _crudOperation.GetUserForUserName(userText);
             if (_crudOperation.EnteredUser != null)
             {
-                MainWindow main = new MainWindow(txtUsername.Text);
-                main.ShowDialog();
-                this.Close();
+                MainPage main = new MainPage(txtUsername.Text);
+                frame.Content = main;
             }
             else
             {

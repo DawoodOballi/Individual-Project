@@ -21,33 +21,9 @@ namespace OvertimeWPF
     /// </summary>
     public partial class MainWindow : Window
     {
-        CRUDoperations _crudOperation = new CRUDoperations();
-        public MainWindow(string user)
+        public MainWindow()
         {
             InitializeComponent();
-            txtHelloUser.Text = "Hello" + user;
-        }
-
-        private void btnBook_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btnLogout_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-            LogIn log = new LogIn();
-            log.Show();
-        }
-
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void txtHelloUser_TextChanged(object sender, TextChangedEventArgs e)
-        {
-
         }
     }
 }
