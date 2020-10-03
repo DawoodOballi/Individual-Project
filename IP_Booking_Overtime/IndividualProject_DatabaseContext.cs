@@ -50,7 +50,7 @@ namespace IP_Booking_Overtime
                 entity.HasOne(d => d.User)
                     .WithMany()
                     .HasForeignKey(d => d.UserId)
-                    .HasConstraintName("FK_Overtime_Users_UserID");
+                    .HasConstraintName("FK_OvertimeUsers");
             });
 
             modelBuilder.Entity<Users>(entity =>
