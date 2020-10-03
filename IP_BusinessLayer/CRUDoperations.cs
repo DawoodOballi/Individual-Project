@@ -112,5 +112,14 @@ namespace IP_BusinessLayer
                 return user.ToList();
             }
         }
+
+        public List<Overtime> PopulateBookedOvertime(Users userEntered)
+        {
+            using(var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Overtime.Where(o => o.UserId == userEntered.UserId);
+                return user.ToList();
+            }
+        }
     }
 }

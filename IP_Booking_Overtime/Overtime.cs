@@ -10,6 +10,7 @@ namespace IP_Booking_Overtime
         public int? NumberOfHours { get; set; }
         public TimeSpan? StartTime { get; set; }
         public string DtStartDdmmmyyyy { get; set; }
+        public int OvertimeId { get; set; }
 
         public virtual Users User { get; set; }
     }

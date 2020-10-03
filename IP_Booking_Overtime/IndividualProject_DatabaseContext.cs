@@ -31,7 +31,7 @@ namespace IP_Booking_Overtime
         {
             modelBuilder.Entity<Overtime>(entity =>
             {
-                entity.HasNoKey();
+                entity.Property(e => e.OvertimeId).HasColumnName("Overtime ID");
 
                 entity.Property(e => e.Day).HasMaxLength(40);
 
@@ -48,7 +48,7 @@ namespace IP_Booking_Overtime
                 entity.Property(e => e.UserId).HasColumnName("User ID");
 
                 entity.HasOne(d => d.User)
-                    .WithMany()
+                    .WithMany(p => p.Overtime)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK_OvertimeUsers");
             });
@@ -61,7 +61,6 @@ namespace IP_Booking_Overtime
                 entity.Property(e => e.UserId).HasColumnName("User ID");
 
                 entity.Property(e => e.UserName).HasMaxLength(40);
-
             });
 
             OnModelCreatingPartial(modelBuilder);

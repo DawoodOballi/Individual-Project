@@ -32,9 +32,8 @@ namespace OvertimeWPF
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
-            //_crudOperations.GetOvertime(ListBox.SelectedItem);
-            _crudOperations.UpdateUserID(_userEntered);
-            //_crudOperations.SetUser_IDs(_userEntered, ListBox.SelectedItem, ListBox.SelectedIndex);
+            _crudOperations.GetOvertime(ListBox.SelectedItem);
+            _crudOperations.SetUser_IDs(_userEntered, ListBox.SelectedItem, ListBox.SelectedIndex);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -49,13 +48,12 @@ namespace OvertimeWPF
 
         private void txtHelloUser_TextChanged(object sender, TextChangedEventArgs e)
         {
-
-
+            
         }
 
         private void btnBookedOvertime_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateBookedOvertime(_userEntered);
         }
 
         private void btnAvailableOvertime_Click(object sender, RoutedEventArgs e)
