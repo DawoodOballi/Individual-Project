@@ -4,12 +4,14 @@ using System.Linq;
 using System.Runtime.Remoting;
 using IP_Booking_Overtime;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 namespace IP_BusinessLayer
 {
     public class CRUDoperations
     {
         public Users EnteredUser { get; set; }
+        public Overtime SelectedOvertime { get; set; }
         public List<Users> RetrieveUsers()
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -24,7 +26,45 @@ namespace IP_BusinessLayer
             {
                 var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
                 EnteredUser = user;
-                return user;
+                return EnteredUser;
+            }
+        }
+
+        public void GetOvertime(object selectedOvertime)
+        {
+            SelectedOvertime = (Overtime)selectedOvertime;
+        }
+
+        public void UpdateUserID(Users enteredUser)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                SelectedOvertime = db.Overtime.Select(o => o).FirstOrDefault();
+                SelectedOvertime.UserId = enteredUser.UserId;
+                db.SaveChanges();
+            }
+        }
+
+        public void SetUser_IDs(Users enteredUser, object selectedItem, int selectedItemIndex)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                if (selectedItem.ToString().Contains("Monday"))
+                {
+                    var query =
+                        from overtime in db.Overtime.Include(u => u.User)
+                        where overtime.Day == "Monday"
+                        select overtime;
+                    for(int i = 0; i < query.Count(); i++)
+                    {
+                        if (i == selectedItemIndex)
+                        {
+                            SelectedOvertime.UserId = enteredUser.UserId;
+                            break;
+                        }
+                    }
+                }
+                db.SaveChanges();
             }
         }
 

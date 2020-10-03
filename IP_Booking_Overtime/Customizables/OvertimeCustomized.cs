@@ -8,7 +8,7 @@ namespace IP_Booking_Overtime
     {
         public override string ToString()
         {
-            return $"Day:{Day} | Hours:{NumberOfHours} | {StartTime}";
+            return $"User ID: {UserId} | Day:{Day} | Hours:{NumberOfHours} | {StartTime}";
         }
     }
 }

@@ -31,7 +31,7 @@ namespace OvertimeWPF
             _crudOperation.GetUserForUserName(userText);
             if (_crudOperation.EnteredUser != null)
             {
-                MainPage main = new MainPage(txtUsername.Text);
+                MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
                 frame.Content = main;
             }
             else

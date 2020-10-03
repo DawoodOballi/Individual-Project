@@ -1,6 +1,8 @@
-﻿using IP_BusinessLayer;
+﻿using IP_Booking_Overtime;
+using IP_BusinessLayer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,15 +22,19 @@ namespace OvertimeWPF
     public partial class MainPage : Page
     {
         CRUDoperations _crudOperations = new CRUDoperations();
-        public MainPage(string user)
+        Users _userEntered;
+        public MainPage(string user, Users userEntered)
         {
             InitializeComponent();
             txtHelloUser.Text = $"Welcome {user}!";
+            _userEntered = userEntered;
         }
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
-
+            //_crudOperations.GetOvertime(ListBox.SelectedItem);
+            _crudOperations.UpdateUserID(_userEntered);
+            //_crudOperations.SetUser_IDs(_userEntered, ListBox.SelectedItem, ListBox.SelectedIndex);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
