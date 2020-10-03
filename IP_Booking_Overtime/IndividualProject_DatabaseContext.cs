@@ -61,6 +61,7 @@ namespace IP_Booking_Overtime
                 entity.Property(e => e.UserId).HasColumnName("User ID");
 
                 entity.Property(e => e.UserName).HasMaxLength(40);
+
             });
 
             OnModelCreatingPartial(modelBuilder);
