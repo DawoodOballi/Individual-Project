@@ -14,7 +14,7 @@
                 <Separator Height="10" Background="#FF8DBDD8"/>
                 <StackPanel Width="200" Height="200" Margin="20">
                     <Label Content="Enter Username" Foreground="#FF8DBDD8" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,65,0,0" />
-                    <TextBox x:Name="txtUsername" FontSize="18" Background="White" Foreground="#FF8DBDD8" BorderBrush="#FF8DBDD8" TextChanged="txtUsername_TextChanged"/>
+                    <TextBox x:Name="txtUsername" FontSize="18" Background="White" Foreground="#FF8DBDD8" BorderBrush="#FF8DBDD8" TextChanged="txtUsername_TextChanged" KeyDown="txtUsername_KeyDown"/>
                     <Button Name="btnSubmit" Content="Login" Margin="0,5,0,0" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnSubmit_Click"/>
                     <Button Name="btnRegister" Content="Register" Margin="0,30,0,0" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnRegister_Click"/>
                 </StackPanel>

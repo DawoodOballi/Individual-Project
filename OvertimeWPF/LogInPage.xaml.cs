@@ -55,5 +55,23 @@ namespace OvertimeWPF
         {
 
         }
+
+        private void txtUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                string userText = txtUsername.Text;
+                _crudOperation.GetUserForUserName(userText);
+                if (_crudOperation.EnteredUser != null)
+                {
+                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                    frame.Content = main;
+                }
+                else
+                {
+                    MessageBox.Show("The Username entered is incorrect");
+                }
+            }
+        }
     }
 }

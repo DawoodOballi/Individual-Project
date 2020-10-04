@@ -39,6 +39,7 @@ namespace OvertimeWPF
                 else
                 {
                     _crud.Create(newUser);
+                    _crud.GetUserForUserName(newUser);
                     MainPage main = new MainPage(txtNewUsername.Text, _crud.EnteredUser);
                     frame.Content = main;
                 }

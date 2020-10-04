@@ -35,11 +35,26 @@ namespace OvertimeWPF
             _crudOperations.GetOvertime(ListBox.SelectedItem);
             _crudOperations.SetUser_IDs(_userEntered);
             ListBox.ItemsSource = null;
-            _crudOperations.PopulateOvertimeForMonday();
-            _crudOperations.PopulateOvertimeForTuesday();
-            _crudOperations.PopulateOvertimeForWednesday();
-            _crudOperations.PopulateOvertimeForThursday();
-            _crudOperations.PopulateOvertimeForFriday();
+            if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+            {
+                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+            }
+            else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+            {
+                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+            }
+            else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
+            {
+                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+            }
+            else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
+            {
+                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+            }
+            else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
+            {
+                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+            }
             _crudOperations.PopulateBookedOvertime(_userEntered);
             _crudOperations.PopulateAvailabelOvertime();
         }
