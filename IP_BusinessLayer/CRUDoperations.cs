@@ -40,7 +40,14 @@ namespace IP_BusinessLayer
             using (var db = new IndividualProject_DatabaseContext())
             {
                 SelectedOvertime = db.Overtime.Include(u => u.User).Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
-                SelectedOvertime.UserId = enteredUser.UserId;
+                if (SelectedOvertime.UserId == null)
+                {
+                    SelectedOvertime.UserId = enteredUser.UserId;
+                }
+                else if(SelectedOvertime.UserId != null)
+                {
+                    SelectedOvertime.UserId = null;
+                }
                 db.SaveChanges();
             };
         }
@@ -96,6 +103,15 @@ namespace IP_BusinessLayer
             {
                 var user = db.Overtime.Where(o => o.UserId == userEntered.UserId);
                 return user.ToList();
+            }
+        }
+
+        public List<Overtime> PopulateAvailabelOvertime()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var available = db.Overtime.Where(o => o.UserId == null);
+                return available.ToList();
             }
         }
     }

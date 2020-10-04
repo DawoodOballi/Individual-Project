@@ -16,9 +16,10 @@
                     <Label Content="Username" Foreground="#FF8CC0FF" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,65,0,0" />
                     <TextBox x:Name="txtUsername" FontSize="18" Background="White" Foreground="#FF8CC0FF" BorderBrush="#FF8DBDD8" TextChanged="txtUsername_TextChanged"/>
                     <Button Name="btnSubmit" Content="Submit" Margin="0,5,0,0" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnSubmit_Click"/>
+                    <Button Name="btnRegister" Content="Register" Margin="0,5,0,0" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnRegister_Click"/>
                 </StackPanel>
             </StackPanel>
         </Border>
-        <Frame Name="frame" NavigationUIVisibility="Hidden"/>
+        <Frame Name="frame" NavigationUIVisibility="Hidden" Navigated="frame_Navigated"/>
     </Grid>
 </Page>

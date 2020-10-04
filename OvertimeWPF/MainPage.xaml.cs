@@ -34,6 +34,14 @@ namespace OvertimeWPF
         {
             _crudOperations.GetOvertime(ListBox.SelectedItem);
             _crudOperations.SetUser_IDs(_userEntered);
+            ListBox.ItemsSource = null;
+            _crudOperations.PopulateOvertimeForMonday();
+            _crudOperations.PopulateOvertimeForTuesday();
+            _crudOperations.PopulateOvertimeForWednesday();
+            _crudOperations.PopulateOvertimeForThursday();
+            _crudOperations.PopulateOvertimeForFriday();
+            _crudOperations.PopulateBookedOvertime(_userEntered);
+            _crudOperations.PopulateAvailabelOvertime();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -43,7 +51,32 @@ namespace OvertimeWPF
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+            if (ListBox.SelectedItem != null)
+            {
+                _crudOperations.GetOvertime(ListBox.SelectedItem);
+                _crudOperations.SetUser_IDs(_userEntered);
+                ListBox.ItemsSource = null;
+                if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+                }
+            }
         }
 
         private void txtHelloUser_TextChanged(object sender, TextChangedEventArgs e)
@@ -58,7 +91,7 @@ namespace OvertimeWPF
 
         private void btnAvailableOvertime_Click(object sender, RoutedEventArgs e)
         {
-
+            ListBox.ItemsSource = _crudOperations.PopulateAvailabelOvertime();
         }
 
         private void btnMonday_Click(object sender, RoutedEventArgs e)

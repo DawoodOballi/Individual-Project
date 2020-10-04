@@ -44,5 +44,16 @@ namespace OvertimeWPF
         {
 
         }
+
+        private void btnRegister_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void frame_Navigated(object sender, NavigationEventArgs e)
+        {
+            RegisterPage register = new RegisterPage();
+            frame.Content = register;
+        }
     }
 }
