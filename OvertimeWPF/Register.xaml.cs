@@ -31,18 +31,16 @@ namespace OvertimeWPF
         {
             string newUser = txtNewUsername.Text;
             _crud.GetUserForUserName(newUser);
+            if(_crud.EnteredUser != null)
             {
-                if(_crud.EnteredUser != null)
-                {
-                    MessageBox.Show("The name you have entered is aleady used. Please try again");
-                }
-                else
-                {
-                    _crud.Create(newUser);
-                    _crud.GetUserForUserName(newUser);
-                    MainPage main = new MainPage(txtNewUsername.Text, _crud.EnteredUser);
-                    frame.Content = main;
-                }
+                MessageBox.Show("The name you have entered is aleady used. Please try again");
+            }
+            else
+            {
+                _crud.Create(newUser);
+                _crud.GetUserForUserName(newUser);
+                MainPage main = new MainPage(txtNewUsername.Text, _crud.EnteredUser);
+                frame.Content = main;
             }
         }
 
@@ -54,6 +52,26 @@ namespace OvertimeWPF
         private void frame_Navigated(object sender, NavigationEventArgs e)
         {
 
+        }
+
+        private void txtNewUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                string newUser = txtNewUsername.Text;
+                _crud.GetUserForUserName(newUser);
+                if (_crud.EnteredUser != null)
+                {
+                    MessageBox.Show("The name you have entered is aleady used. Please try again");
+                }
+                else
+                {
+                    _crud.Create(newUser);
+                    _crud.GetUserForUserName(newUser);
+                    MainPage main = new MainPage(txtNewUsername.Text, _crud.EnteredUser);
+                    frame.Content = main;
+                }
+            }
         }
     }
 }

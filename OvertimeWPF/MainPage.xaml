@@ -12,21 +12,21 @@
             <Border Background="White" Margin="0,40,0,0">
                 <Grid Margin="0,32,0,0">
                     <TextBox Text="" Name="txtHelloUser" Background="{x:Null}" Foreground="White" FontSize="30" Margin="286,-78,286,400" TextChanged="txtHelloUser_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia"/>
-                    <Button Name="btnLogout" Content="Logout" Width="60" Height="30" Background="White" Foreground="#FF8DBDD8" Click="btnLogout_Click" Margin="10,-67,730,399"/>
+                    <Button Name="btnLogout" Content="Logout" Width="60" Height="30" Background="White" Foreground="#FF8DBDD8" Click="btnLogout_Click" Margin="10,-67,730,399" FontFamily="Constantia"/>
                     <Grid Width="300" Height="60" VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="0,0,500,0">
-                        <Button Name="btnBook" Content="Book" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnBook_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,150,0"/>
-                        <Button Name="btnCancel" Content="Cancel" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnCancel_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="150,0,0,0"/>
+                        <Button Name="btnBook" Content="Book" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnBook_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,150,0" FontFamily="Constantia"/>
+                        <Button Name="btnCancel" Content="Cancel" Width="60" Background="#FF8DBDD8" Foreground="White" Click="btnCancel_Click" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="150,0,0,0" FontFamily="Constantia"/>
                     </Grid>
                     <Frame Name="innerFrame" NavigationUIVisibility="Hidden" Margin="320,0,0,0"/>
-                    <Button Name="btnBookedOvertime" Content="Booked Overtime" Click="btnBookedOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,65,650,256"/>
-                    <Button Name="btnAvailableOvertime" Content="Available Overtime" Click="btnAvailableOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,140,650,181"/>
-                    <ListBox Name="ListBox" Background="#FF8DBDD8" Foreground="White" Margin="286,0,0,0" FontSize="20" Width="514" Height="362"/>
+                    <Button Name="btnBookedOvertime" FontFamily="Constantia" Content="Booked Overtime" Click="btnBookedOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,65,650,256"/>
+                    <Button Name="btnAvailableOvertime" FontFamily="Constantia" Content="Available Overtime" Click="btnAvailableOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,140,650,181"/>
+                    <ListBox Name="ListBox" FontFamily="Constantia" Background="#FF8DBDD8" Foreground="White" Margin="286,0,0,0" FontSize="20" Width="514" Height="362"/>
                     <Grid Margin="286,-33,0,362">
-                        <Button Name="btnMonday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Monday" Click="btnMonday_Click" Margin="0,0,400,0"/>
-                        <Button Name="btnTuesday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Tuesday" Click="btnTuesday_Click" Margin="0,0,200,0"/>
-                        <Button Name="btnWednesday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Weednesday" Click="btnWednesday_Click" Margin="0,0,0,0"/>
-                        <Button Name="btnThursday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Thursday" Click="btnThursday_Click" Margin="200,0,0,0"/>
-                        <Button Name="btnFriday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Friday" Click="btnFriday_Click" Margin="400,0,0,0"/>
+                        <Button Name="btnMonday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Monday" Click="btnMonday_Click" Margin="0,0,400,0" FontFamily="Constantia"/>
+                        <Button Name="btnTuesday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Tuesday" Click="btnTuesday_Click" Margin="0,0,200,0" FontFamily="Constantia"/>
+                        <Button Name="btnWednesday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Weednesday" Click="btnWednesday_Click" Margin="0,0,0,0" FontFamily="Constantia"/>
+                        <Button Name="btnThursday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Thursday" Click="btnThursday_Click" Margin="200,0,0,0" FontFamily="Constantia"/>
+                        <Button Name="btnFriday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Friday" Click="btnFriday_Click" Margin="400,0,0,0" FontFamily="Constantia"/>
                     </Grid>
                 </Grid>
             </Border>
