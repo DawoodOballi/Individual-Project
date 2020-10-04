@@ -20,6 +20,20 @@ namespace IP_BusinessLayer
             }
         }
 
+        public void Create(string enteredUserName)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
+                if(EnteredUser == null)
+                {
+                    Users newUser = new Users { UserName = enteredUserName };
+                    db.Users.Add(newUser);
+                    db.SaveChanges();
+                }
+            }
+        }
+
         public Users GetUserForUserName(string enteredUser)
         {
             using (var db = new IndividualProject_DatabaseContext())
