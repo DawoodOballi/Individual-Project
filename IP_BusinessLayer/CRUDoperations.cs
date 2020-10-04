@@ -35,35 +35,12 @@ namespace IP_BusinessLayer
             SelectedOvertime = (Overtime)selectedOvertime;
         }
 
-        public void UpdateUserID(Users enteredUser)
+        public void SetUser_IDs(Users enteredUser)
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                SelectedOvertime = db.Overtime.Where(o => o.UserId == null).FirstOrDefault();
+                SelectedOvertime = db.Overtime.Include(u => u.User).Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
                 SelectedOvertime.UserId = enteredUser.UserId;
-                db.SaveChanges();
-            }
-        }
-
-        public void SetUser_IDs(Users enteredUser, object selectedItem, int selectedItemIndex)
-        {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                if (selectedItem.ToString().Contains("Monday"))
-                {
-                    var query =
-                        from overtime in db.Overtime.Include(u => u.User)
-                        where overtime.Day == "Monday" && overtime.UserId == null
-                        select overtime;
-                    for(int i = 0; i < query.Count(); i++)
-                    {
-                        if (i == selectedItemIndex)
-                        {
-                            SelectedOvertime.UserId = enteredUser.UserId;
-                            break;
-                        }
-                    }
-                }
                 db.SaveChanges();
             };
         }
@@ -72,7 +49,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Overtime.Where(o => o.Day == "Monday");
+                var user = db.Overtime.Where(o => o.Day == "Monday" && o.UserId == null);
                 return user.ToList();
             }
         }
@@ -81,7 +58,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Overtime.Where(o => o.Day == "Tuesday");
+                var user = db.Overtime.Where(o => o.Day == "Tuesday" && o.UserId == null);
                 return user.ToList();
             }
         }
@@ -90,7 +67,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Overtime.Where(o => o.Day == "Wednesday");
+                var user = db.Overtime.Where(o => o.Day == "Wednesday" && o.UserId == null);
                 return user.ToList();
             }
         }
@@ -99,7 +76,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Overtime.Where(o => o.Day == "Thursday");
+                var user = db.Overtime.Where(o => o.Day == "Thursday" && o.UserId == null);
                 return user.ToList();
             }
         }
@@ -108,7 +85,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Overtime.Where(o => o.Day == "Friday");
+                var user = db.Overtime.Where(o => o.Day == "Friday" && o.UserId == null);
                 return user.ToList();
             }
         }

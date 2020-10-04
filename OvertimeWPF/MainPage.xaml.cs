@@ -33,7 +33,7 @@ namespace OvertimeWPF
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
             _crudOperations.GetOvertime(ListBox.SelectedItem);
-            _crudOperations.SetUser_IDs(_userEntered, ListBox.SelectedItem, ListBox.SelectedIndex);
+            _crudOperations.SetUser_IDs(_userEntered);
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)

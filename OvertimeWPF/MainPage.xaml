@@ -20,7 +20,7 @@
                     <Frame Name="innerFrame" NavigationUIVisibility="Hidden" Margin="320,0,0,0"/>
                     <Button Name="btnBookedOvertime" Content="Booked Overtime" Click="btnBookedOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,65,650,256"/>
                     <Button Name="btnAvailableOvertime" Content="Available Overtime" Click="btnAvailableOvertime_Click" Background="#FF8DBDD8" Foreground="White" Margin="16,140,650,181"/>
-                    <ListBox Name="ListBox" Background="#FF8DBDD8" Foreground="White" Margin="286,0,0,0" FontSize="24"/>
+                    <ListBox Name="ListBox" Background="#FF8DBDD8" Foreground="White" Margin="286,0,0,0" FontSize="20" Width="514" Height="362"/>
                     <Grid Margin="286,-33,0,362">
                         <Button Name="btnMonday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Monday" Click="btnMonday_Click" Margin="0,0,400,0"/>
                         <Button Name="btnTuesday" Background="#FF8DBDD8" Foreground="White" Width="90" Content="Tuesday" Click="btnTuesday_Click" Margin="0,0,200,0"/>
