@@ -44,7 +44,17 @@ namespace OvertimeWPF
             }
             else if (comboxUserType.SelectedItem.ToString().Contains("Admin"))
             {
-                MessageBox.Show("Please enter an Admin User name");
+                string userText = txtUsername.Text;
+                _crudOperation.GetAdmin(userText);
+                if (_crudOperation.EnteredAdmin != null)
+                {
+                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredAdmin);
+                    frame.Content = main;
+                }
+                else
+                {
+                    MessageBox.Show("The Username entered is incorrect");
+                }
             }
         }
 

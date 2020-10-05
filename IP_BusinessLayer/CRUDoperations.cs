@@ -12,6 +12,7 @@ namespace IP_BusinessLayer
     {
         public Users EnteredUser { get; set; }
         public Overtime SelectedOvertime { get; set; }
+        public Admins EnteredAdmin { get; set; }
         public List<Users> RetrieveUsers()
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -41,6 +42,16 @@ namespace IP_BusinessLayer
                 var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
                 EnteredUser = user;
                 return EnteredUser;
+            }
+        }
+
+        public Admins GetAdmin(string enteredAdmin)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var admin = db.Admins.Where(a => a.AdminName == enteredAdmin).FirstOrDefault();
+                EnteredAdmin = admin;
+                return EnteredAdmin;
             }
         }
 
