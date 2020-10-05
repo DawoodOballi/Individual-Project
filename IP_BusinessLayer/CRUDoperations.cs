@@ -35,6 +35,16 @@ namespace IP_BusinessLayer
             }
         }
 
+        public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours)
+        {
+            var newOvertime = new Overtime() { Day = day, StartTime = startTime, NumberOfHours = Convert.ToInt32(numberOfHours) };
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                db.Overtime.Add(newOvertime);
+                db.SaveChanges();
+            }
+        }
+
         public Users GetUserForUserName(string enteredUser)
         {
             using (var db = new IndividualProject_DatabaseContext())

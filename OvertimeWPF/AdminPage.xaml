@@ -32,17 +32,21 @@
                     </StackPanel>
                     <StackPanel Margin="0,4,577,-4">
                         <Label Content="New User" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="23"/>
-                        <TextBox x:Name="newUser" Foreground="#FFFF6500" Background="White" TextChanged="newUser_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="0,5,0,0" Height="30"/>
+                        <TextBox x:Name="newUsertxt" Foreground="#FFFF6500" Background="White" TextChanged="newUsertxt_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="0,5,0,0" Height="30"/>
                         <Button x:Name="btnCreateNewUser" FontFamily="Constantia" Content="Create New User" Click="btnCreateNewUser_Click" Background="#FFFFFFFF" Foreground="#FFFF6500" Margin="0,5,0,0" FontSize="17" Height="30"/>
                         <Separator Background="White" Margin="0,30,0,0"/>
                         <Label Content="Add Overtime" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="23" Margin="0,15,0,0"/>
                         <Label Content="Day" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="18" Margin="0,0,150,0"/>
-                        <Label Content="Start time" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="18" Margin="150,-30,0,0"/>
+                        <Label Content="Hours" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="18" Margin="150,-30,0,0"/>
                         <TextBox x:Name="Daybox" Foreground="#FFFF6500" Background="White" TextChanged="Daybox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="0,-5,150,0" Height="30"/>
-                        <TextBox x:Name="StartTimeBox" Foreground="#FFFF6500" Background="White" TextChanged="StartTimeBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="150,-30,0,0" Height="30"/>
-                        <Label Content="Number of Hours" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="18" Margin="0,0,0,0"/>
-                        <TextBox x:Name="NoHoursBox" Foreground="#FFFF6500" Background="White" TextChanged="StartTimeBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="75,0,75,0" Height="30"/>
+                        <TextBox x:Name="NoHoursBox" Foreground="#FFFF6500" Background="White" TextChanged="NoHoursBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="150,-30,0,0" Height="30"/>
+                        <Label Content="Start Time" Foreground="White" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" FontSize="18" Margin="0,0,40,0"/>
+                        <TextBox x:Name="StartTimeBox" Foreground="#FFFF6500" Background="White" TextChanged="StartTimeBox_TextChanged" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" BorderThickness="0" FontFamily="Constantia" Margin="55,0,95,0" Height="30"/>
                         <Button Name="btnCreateOvertime" FontFamily="Constantia" Content="Create Overtime" Click="btnCreateOvertime_Click" Background="#FFFFFFFF" Foreground="#FFFF6500" Margin="0,7,0,0" FontSize="17" Height="30"/>
+                        <ComboBox Name="comboxTime" Foreground="#FFFF6500" Background="#FFFF6500" SelectionChanged="comboxTime_SelectionChanged" BorderBrush="#FFFF6500" Margin="141,-68,50,36" VerticalContentAlignment="Center" HorizontalContentAlignment="Center">
+                            <ComboBoxItem IsSelected="True">AM</ComboBoxItem>
+                            <ComboBoxItem>PM</ComboBoxItem>
+                        </ComboBox>
                     </StackPanel>
                 </Grid>
             </Border>
