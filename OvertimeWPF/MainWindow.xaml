@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OvertimeWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Background="#FF8DBDD8">
+        Title="MainWindow" Height="450" Width="800" Background="#FFFF6500">
     <Viewbox Stretch="Uniform" StretchDirection="Both">
         <Frame Name="frame" NavigationUIVisibility="Hidden" Source="/LogInPage.xaml"/>
     </Viewbox>

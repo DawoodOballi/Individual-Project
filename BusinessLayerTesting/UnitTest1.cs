@@ -16,7 +16,7 @@ namespace BusinessLayerTesting
         }
 
         [Test]
-        public void WhenUsernameEnteredDoesNotExistInDataBase_AnErrorMessageIsDisplayed()
+        public void WhenUsernameEnteredDoesNotExistInDataBase_ANullIsReturned()
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
@@ -26,7 +26,7 @@ namespace BusinessLayerTesting
         }
 
         [Test]
-        public void WhenUserNameEnteredDoesExistsInTheDatabase()
+        public void WhenUserNameEnteredDoesExistsInTheDatabase_AUserObjectIsReturned()
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
