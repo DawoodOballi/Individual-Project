@@ -1,0 +1,11 @@
+﻿USE IndividualProject_Database;
+
+ALTER TABLE Admins
+DROP COLUMN USERS;
+
+SELECT * FROM Admins;
+
+SELECT * FROM Users;
+
+ALTER TABLE Users
+WITH CHECK ADD CONSTRAINT FK_UA FOREIGN KEY ([Admin ID]) REFERENCES Admins([Admin ID]);
