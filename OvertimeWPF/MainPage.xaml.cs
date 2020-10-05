@@ -74,7 +74,7 @@ namespace OvertimeWPF
             if (ListBox.SelectedItem != null)
             {
                 _crudOperations.GetOvertime(ListBox.SelectedItem);
-                _crudOperations.RemoveUser_IDs(_userEntered);
+                _crudOperations.RemoveUser_IDs();
                 ListBox.ItemsSource = null;
                 ListBox.ItemsSource = _crudOperations.PopulateBookedOvertime(_userEntered);
             }

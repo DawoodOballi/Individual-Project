@@ -118,5 +118,31 @@ namespace BusinessLayerTesting
                 Assert.AreEqual("Friday", useritems[0].Day);
             }
         }
+
+        [Test]
+        public void WhenSelectedItemIsBookedAndCancelIsClicked_ThenRemnoveTheUserIdConnectionToTheSelectedSlot()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = _crud.GetUserForUserName("Dawood");
+                object overtime = db.Overtime.Where(o => o.OvertimeId == 1).FirstOrDefault();
+                _crud.GetOvertime(overtime);
+                _crud.SetUser_IDs(user);
+                _crud.RemoveUser_IDs();
+                Assert.AreEqual(null, _crud.SelectedOvertime.UserId);
+            }
+        }
+
+        [Test]
+        public void WhenSelectedItemIsNotBookedAndBookIsClicked_ThenAddTheUserIdConnectionToTheSelectedSlot()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = _crud.GetUserForUserName("Dawood");
+                object overtime = db.Overtime.Where(o => o.OvertimeId == 1).FirstOrDefault();
+                _crud.SetUser_IDs(user);
+                Assert.AreEqual(_crud.SelectedOvertime.UserId, user.UserId);
+            }
+        }
     }
 }
