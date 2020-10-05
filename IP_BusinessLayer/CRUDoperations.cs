@@ -24,7 +24,7 @@ namespace IP_BusinessLayer
         {
             using (var db = new IndividualProject_DatabaseContext())
             {
-                var user = db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
+                EnteredUser = db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
                 if(EnteredUser == null)
                 {
                     Users newUser = new Users { UserName = enteredUserName };
@@ -54,16 +54,26 @@ namespace IP_BusinessLayer
             using (var db = new IndividualProject_DatabaseContext())
             {
                 SelectedOvertime = db.Overtime.Include(u => u.User).Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
-                if (SelectedOvertime.UserId == null)
-                {
+                //if (SelectedOvertime.UserId == null)
+                //{
                     SelectedOvertime.UserId = enteredUser.UserId;
-                }
-                else if(SelectedOvertime.UserId != null)
-                {
-                    SelectedOvertime.UserId = null;
-                }
+                //}
+                //else if(SelectedOvertime.UserId != null)
+                //{
+                //    SelectedOvertime.UserId = null;
+                //}
                 db.SaveChanges();
             };
+        }
+
+        public void RemoveUser_IDs(Users enteredUser)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                SelectedOvertime = db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
+                SelectedOvertime.UserId = null;
+                db.SaveChanges();
+            }
         }
 
         public List<Overtime> PopulateOvertimeForMonday()

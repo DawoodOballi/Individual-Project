@@ -32,31 +32,36 @@ namespace OvertimeWPF
 
         private void btnBook_Click(object sender, RoutedEventArgs e)
         {
-            _crudOperations.GetOvertime(ListBox.SelectedItem);
-            _crudOperations.SetUser_IDs(_userEntered);
-            ListBox.ItemsSource = null;
-            if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+            if (ListBox.SelectedItem != null)
             {
-                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                _crudOperations.GetOvertime(ListBox.SelectedItem);
+                _crudOperations.SetUser_IDs(_userEntered);
+                ListBox.ItemsSource = null;
+                if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+                }
+                else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
+                {
+                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+                }
             }
-            else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+            else
             {
-                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+                MessageBox.Show("Please select a slot to book for overtime.");
             }
-            else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
-            {
-                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
-            }
-            else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
-            {
-                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
-            }
-            else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
-            {
-                ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
-            }
-            //_crudOperations.PopulateBookedOvertime(_userEntered);
-            //_crudOperations.PopulateAvailabelOvertime();
         }
 
         private void btnLogout_Click(object sender, RoutedEventArgs e)
@@ -69,9 +74,13 @@ namespace OvertimeWPF
             if (ListBox.SelectedItem != null)
             {
                 _crudOperations.GetOvertime(ListBox.SelectedItem);
-                _crudOperations.SetUser_IDs(_userEntered);
+                _crudOperations.RemoveUser_IDs(_userEntered);
                 ListBox.ItemsSource = null;
                 ListBox.ItemsSource = _crudOperations.PopulateBookedOvertime(_userEntered);
+            }
+            else
+            {
+                MessageBox.Show("Please select a slot to Cancel");
             }
         }
 
