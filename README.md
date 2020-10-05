@@ -36,13 +36,41 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 #### Project Board Overview:
 
-**START OF SPRINT 1**
-
-![image-20201001164921837](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201001164921837.png)
-
-**END OF SPRINT 1**
-
-![image-20201001164144705](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201001164144705.png)
-
 -----------------------------------------------------------------------------END OF SPRINT 1-------------------------------------------------------------------------------------
 
+
+
+
+
+## Sprint 2
+
+#### Goals: 
+
+* Create Registration page
+* Create Overtime table
+* Add registration functionality
+* Add Booking/Cancelling functionality
+* Add tests to test new functionality
+* Finish Logout Functionality
+
+#### Review: 
+
+| COMPLETE                       | INCOMPLETE |
+| :----------------------------- | ---------- |
+| Logout                         |            |
+| Cancel                         |            |
+| Book                           |            |
+| Register                       |            |
+| View Booked/Available Overtime |            |
+
+#### Retrospective:
+
+* **Learned**: Ensure to plan out whether to use database first or model first approach.
+* **Do Differently:** Create an ERD diagram to map out what I will need for my database.
+* **Next time:** Ensure an ERD is created at the start.
+
+#### Project Board Overview:
+
+**START OF SPRINT 1**
+
+-----------------------------------------------------------------------------END OF SPRINT 2-------------------------------------------------------------------------------------
