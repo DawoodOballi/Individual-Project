@@ -1,4 +1,5 @@
-﻿using IP_BusinessLayer;
+﻿using IP_Booking_Overtime;
+using IP_BusinessLayer;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,16 +28,23 @@ namespace OvertimeWPF
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string userText = txtUsername.Text;
-            _crudOperation.GetUserForUserName(userText);
-            if (_crudOperation.EnteredUser != null)
+            if (comboxUserType.SelectedItem.ToString().Contains("User"))
             {
-                MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
-                frame.Content = main;
+                string userText = txtUsername.Text;
+                _crudOperation.GetUserForUserName(userText);
+                if (_crudOperation.EnteredUser != null)
+                {
+                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                    frame.Content = main;
+                }
+                else
+                {
+                    MessageBox.Show("The Username entered is incorrect");
+                }
             }
-            else
+            else if (comboxUserType.SelectedItem.ToString().Contains("Admin"))
             {
-                MessageBox.Show("The Username entered is incorrect");
+                MessageBox.Show("Please enter an Admin User name");
             }
         }
 
@@ -72,6 +80,11 @@ namespace OvertimeWPF
                     MessageBox.Show("The Username entered is incorrect");
                 }
             }
+        }
+
+        private void comboxUserType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
         }
     }
 }

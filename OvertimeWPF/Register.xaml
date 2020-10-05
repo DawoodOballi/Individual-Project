@@ -6,7 +6,13 @@
       xmlns:local="clr-namespace:OvertimeWPF"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="Register" Height="450" Width="800" FontSize="14" Background="#FFFF6500">
+      Title="Register" Height="450" Width="800" FontSize="14">
+        <Page.Background>
+        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+            <GradientStop Color="#FFD3C035" Offset="1"/>
+            <GradientStop Color="#FFFF6500"/>
+        </LinearGradientBrush>
+    </Page.Background>
     <Grid>
         <Border Background="White" CornerRadius="20" Margin="40">
         <StackPanel Margin="20">
