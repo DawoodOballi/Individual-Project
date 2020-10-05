@@ -48,7 +48,7 @@ namespace OvertimeWPF
                 _crudOperation.GetAdmin(userText);
                 if (_crudOperation.EnteredAdmin != null)
                 {
-                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredAdmin);
+                    AdminPage main = new AdminPage(txtUsername.Text, _crudOperation.EnteredAdmin);
                     frame.Content = main;
                 }
                 else
@@ -78,16 +78,33 @@ namespace OvertimeWPF
         {
             if(e.Key == Key.Enter)
             {
-                string userText = txtUsername.Text;
-                _crudOperation.GetUserForUserName(userText);
-                if (_crudOperation.EnteredUser != null)
+                if (comboxUserType.SelectedItem.ToString().Contains("User"))
                 {
-                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
-                    frame.Content = main;
+                    string userText = txtUsername.Text;
+                    _crudOperation.GetUserForUserName(userText);
+                    if (_crudOperation.EnteredUser != null)
+                    {
+                        MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                        frame.Content = main;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Username entered is incorrect");
+                    }
                 }
-                else
+                else if (comboxUserType.SelectedItem.ToString().Contains("Admin"))
                 {
-                    MessageBox.Show("The Username entered is incorrect");
+                    string userText = txtUsername.Text;
+                    _crudOperation.GetAdmin(userText);
+                    if (_crudOperation.EnteredAdmin != null)
+                    {
+                        AdminPage main = new AdminPage(txtUsername.Text, _crudOperation.EnteredAdmin);
+                        frame.Content = main;
+                    }
+                    else
+                    {
+                        MessageBox.Show("The Username entered is incorrect");
+                    }
                 }
             }
         }

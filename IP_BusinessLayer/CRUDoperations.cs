@@ -134,6 +134,15 @@ namespace IP_BusinessLayer
             }
         }
 
+        public List<Overtime> PopulateBookedOvertimeForAllUsers()
+        {
+            using(var db = new IndividualProject_DatabaseContext())
+            {
+                var users = db.Overtime.Where(o => o.UserId != null);
+                return users.ToList();
+            }
+        }
+
         public List<Overtime> PopulateAvailabelOvertime()
         {
             using (var db = new IndividualProject_DatabaseContext())
