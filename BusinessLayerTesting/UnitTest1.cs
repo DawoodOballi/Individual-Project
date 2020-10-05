@@ -8,20 +8,12 @@ namespace BusinessLayerTesting
     public class Tests
     {
         CRUDoperations _crud = new CRUDoperations();
-        Users user;
+
 
         [SetUp]
         public void Setup()
         {
-            //using (var db = new IndividualProject_DatabaseContext())
-            //{
-            //    var user =
-            //        from _user in db.Users
-            //        where _user.UserId == 1
-            //        select _user;
-            //    db.Users.RemoveRange(user);
-            //    db.SaveChanges();
-            //}
+
         }
 
         [Test]
