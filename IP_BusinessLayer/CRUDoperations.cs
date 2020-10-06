@@ -13,6 +13,7 @@ namespace IP_BusinessLayer
         public Users EnteredUser { get; set; }
         public Overtime SelectedOvertime { get; set; }
         public Admins EnteredAdmin { get; set; }
+        public Overtime EntTime { get; set; }
         public List<Users> RetrieveUsers()
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -160,6 +161,44 @@ namespace IP_BusinessLayer
                 var available = db.Overtime.Where(o => o.UserId == null);
                 return available.ToList();
             }
+        }
+
+        public bool CheckForOverlap(Users enteredUser, object selectedOvertime)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var end = SelectedOvertime.StartTime + TimeSpan.Parse($"{SelectedOvertime.NumberOfHours}:00");
+                var bookedOvertimes = db.Overtime.Where(o => o.UserId == enteredUser.UserId);
+                var canBook = true;
+                if (bookedOvertimes.Count() > 0)
+                {
+                    TimeSpan? overtimeSlotEndTime;
+                    foreach (var overtimeSlot in bookedOvertimes)
+                    {
+                        overtimeSlotEndTime = overtimeSlot.StartTime + TimeSpan.Parse($"{overtimeSlot.NumberOfHours}:00");
+                        if (!(overtimeSlot.StartTime < end && SelectedOvertime.StartTime > overtimeSlotEndTime) && overtimeSlot.Day == SelectedOvertime.Day)
+                        {
+                            canBook = false;
+                        }
+                    }
+                    if (canBook)
+                    {
+                        SetUser_IDs(enteredUser);
+                    }
+                }
+                else if (bookedOvertimes.Count() == 0)
+                {
+                    SetUser_IDs(enteredUser);
+                }
+                return canBook;
+            }
+        }
+
+        public bool Overlaps(Users enteredUser, object selectedOvertime)
+        {
+            bool overlaps;
+            GetOvertime(selectedOvertime);
+            return CheckForOverlap(enteredUser, selectedOvertime) ? overlaps = true : overlaps = false;
         }
     }
 }

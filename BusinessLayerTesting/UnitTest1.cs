@@ -136,5 +136,25 @@ namespace BusinessLayerTesting
                 Assert.AreEqual(_crud.SelectedOvertime.UserId, user.UserId);
             }
         }
+
+        [Test]
+        public void WhenEnteredAdminIsInDatabase_AnAdminObjectIsReturnedWithTheirName()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var admin = _crud.GetAdmin("Cathy");
+                Assert.AreEqual("Cathy", admin.AdminName);
+            }
+        }
+
+        [Test]
+        public void WhenEnteredAdminIsNotInDatabase_NullIsReturned()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var admin = _crud.GetAdmin("Dawood");
+                Assert.AreEqual(null, admin);
+            }
+        }
     }
 }
