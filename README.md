@@ -34,8 +34,6 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Do Differently:** Write out all the user stories first then begin implementing them.
 * **Next time:** Make sure if any user stories are finished before the end of the sprint then add another user story to the sprint backlog.
 
-#### Project Board Overview:
-
 -----------------------------------------------------------------------------END OF SPRINT 1-------------------------------------------------------------------------------------
 
 
@@ -71,8 +69,28 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Do Differently:** Create an ERD diagram to map out what I will need for my database.
 * **Next time:** Ensure an ERD is created at the start.
 
-#### Project Board Overview:
-
-**START OF SPRINT 1**
-
 -----------------------------------------------------------------------------END OF SPRINT 2-------------------------------------------------------------------------------------
+
+
+
+## Sprint 3
+
+#### Goals: 
+
+* Add code to determine conflicting overtimes when booking.
+* Finish all tests for newly added functionality.
+
+#### Review: 
+
+| COMPLETE | INCOMPLETE |
+| :------- | ---------- |
+|          |            |
+|          |            |
+
+#### Retrospective:
+
+* **Learned**: How to test for conflicting time ranges.
+* **Do Differently:** Map out all possibilities where conflicting times can occur and cant occur.
+* **Next time:** Look up how to simplify coding for better layout.
+
+-----------------------------------------------------------------------------END OF SPRINT 3-------------------------------------------------------------------------------------
