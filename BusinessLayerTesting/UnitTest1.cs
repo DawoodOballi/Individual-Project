@@ -156,5 +156,29 @@ namespace BusinessLayerTesting
                 Assert.AreEqual(null, admin);
             }
         }
+
+        [Test]
+        public void WhenSelectedOvertimeOverlaps_FalseIsReturned()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = _crud.GetUserForUserName("Dawood");
+                object overtime = db.Overtime.Where(o => o.OvertimeId == 3).FirstOrDefault();
+                bool overlaps = _crud.Overlaps(user, overtime);
+                Assert.AreEqual(false, overlaps);
+            }
+        }
+
+        [Test]
+        public void WhenSelectedOvertimeDoesNotOverlap_TrueIsReturned()
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var user = _crud.GetUserForUserName("Dawood");
+                object overtime = db.Overtime.Where(o => o.OvertimeId == 7).FirstOrDefault();
+                bool overlaps = _crud.Overlaps(user, overtime);
+                Assert.AreEqual(true, overlaps);
+            }
+        }
     }
 }
