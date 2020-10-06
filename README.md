@@ -52,6 +52,8 @@ The goal of this project is to have a functional MVP where the user is able to:
 * Add Booking/Cancelling functionality
 * Add tests to test new functionality
 * Finish Logout Functionality
+* Create Admins Table
+* Add feature to create overtime and users
 
 #### Review: 
 
