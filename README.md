@@ -82,10 +82,10 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 #### Review: 
 
-| COMPLETE | INCOMPLETE |
-| :------- | ---------- |
-|          |            |
-|          |            |
+| COMPLETE                                                 | INCOMPLETE |
+| :------------------------------------------------------- | ---------- |
+| Create more tests and pass them                          |            |
+| Add feature to detect if overtimes conflict when booking |            |
 
 #### Retrospective:
 
