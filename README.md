@@ -94,3 +94,9 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Next time:** Look up how to simplify coding for better layout.
 
 -----------------------------------------------------------------------------END OF SPRINT 3-------------------------------------------------------------------------------------
+
+
+
+#### Class Diagram
+
+![image-20201006151530298](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201006151530298.png)
