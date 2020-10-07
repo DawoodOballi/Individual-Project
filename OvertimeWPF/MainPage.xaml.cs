@@ -34,28 +34,33 @@ namespace OvertimeWPF
         {
             if (ListBox.SelectedItem != null)
             {
-                _crudOperations.GetOvertime(ListBox.SelectedItem);
-                _crudOperations.SetUser_IDs(_userEntered);
-                ListBox.ItemsSource = null;
-                if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+                if (_crudOperations.Overlaps(_userEntered, ListBox.SelectedItem) == true)
                 {
-                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                    ListBox.ItemsSource = null;
+                    if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+                    {
+                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                    }
+                    else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+                    {
+                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+                    }
+                    else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
+                    {
+                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+                    }
+                    else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
+                    {
+                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+                    }
+                    else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
+                    {
+                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+                    }
                 }
-                else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+                else
                 {
-                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
-                }
-                else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
-                {
-                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
-                }
-                else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
-                {
-                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
-                }
-                else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
-                {
-                    ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+                    MessageBox.Show("The Overtime slot you have selected overlaps with 1 or more of the booked overtimes. Please cancel any overlapping overtimes if you want to book this slot.");
                 }
             }
             else

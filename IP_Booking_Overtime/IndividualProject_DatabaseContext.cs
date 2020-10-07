@@ -15,6 +15,7 @@ namespace IP_Booking_Overtime
         {
         }
 
+        public virtual DbSet<Admins> Admins { get; set; }
         public virtual DbSet<Overtime> Overtime { get; set; }
         public virtual DbSet<Users> Users { get; set; }
 
@@ -29,6 +30,18 @@ namespace IP_Booking_Overtime
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Admins>(entity =>
+            {
+                entity.HasKey(e => e.AdminId)
+                    .HasName("PK__Admins__9BFA1772056C37CF");
+
+                entity.Property(e => e.AdminId).HasColumnName("Admin ID");
+
+                entity.Property(e => e.AdminName)
+                    .HasColumnName("Admin Name")
+                    .HasMaxLength(40);
+            });
+
             modelBuilder.Entity<Overtime>(entity =>
             {
                 entity.Property(e => e.OvertimeId).HasColumnName("Overtime ID");
@@ -60,7 +73,14 @@ namespace IP_Booking_Overtime
 
                 entity.Property(e => e.UserId).HasColumnName("User ID");
 
+                entity.Property(e => e.AdminId).HasColumnName("Admin ID");
+
                 entity.Property(e => e.UserName).HasMaxLength(40);
+
+                entity.HasOne(d => d.Admin)
+                    .WithMany(p => p.Users)
+                    .HasForeignKey(d => d.AdminId)
+                    .HasConstraintName("FK_UA");
             });
 
             OnModelCreatingPartial(modelBuilder);
