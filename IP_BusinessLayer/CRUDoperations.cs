@@ -176,9 +176,19 @@ namespace IP_BusinessLayer
                     foreach (var overtimeSlot in bookedOvertimes)
                     {
                         overtimeSlotEndTime = overtimeSlot.StartTime + TimeSpan.Parse($"{overtimeSlot.NumberOfHours}:00");
-                        if (!(overtimeSlot.StartTime > end && SelectedOvertime.StartTime < overtimeSlotEndTime) && overtimeSlot.Day == SelectedOvertime.Day)
+                        if (overtimeSlotEndTime < SelectedOvertime.StartTime)
                         {
-                            canBook = false;
+                            if (!(overtimeSlotEndTime < SelectedOvertime.StartTime && overtimeSlot.StartTime < end) && overtimeSlot.Day == SelectedOvertime.Day)
+                            {
+                                canBook = false;
+                            }
+                        }
+                        else if(overtimeSlotEndTime > SelectedOvertime.StartTime)
+                        {
+                            if (!(overtimeSlotEndTime > SelectedOvertime.StartTime && overtimeSlot.StartTime > end) && overtimeSlot.Day == SelectedOvertime.Day)
+                            {
+                                canBook = false;
+                            }
                         }
                     }
                     if (canBook)
