@@ -34,6 +34,16 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Do Differently:** Write out all the user stories first then begin implementing them.
 * **Next time:** Make sure if any user stories are finished before the end of the sprint then add another user story to the sprint backlog.
 
+#### Project Board Overview:
+
+**START OF SPRINT 1**
+
+![image-20201001164921837](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201001164921837.png)
+
+**END OF SPRINT 1**
+
+![image-20201001164144705](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201001164144705.png)
+
 -----------------------------------------------------------------------------END OF SPRINT 1-------------------------------------------------------------------------------------
 
 
@@ -69,6 +79,18 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Do Differently:** Create an ERD diagram to map out what I will need for my database.
 * **Next time:** Ensure an ERD is created at the start.
 
+
+
+#### Project Board Overview:
+
+**START OF SPRINT 2**
+
+![image-20201007114315965](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201007114315965.png)
+
+**END OF SPRINT 2**
+
+![image-20201007114405262](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201007114405262.png)
+
 -----------------------------------------------------------------------------END OF SPRINT 2-------------------------------------------------------------------------------------
 
 
@@ -93,6 +115,16 @@ The goal of this project is to have a functional MVP where the user is able to:
 * **Do Differently:** Map out all possibilities where conflicting times can occur and cant occur.
 * **Next time:** Look up how to simplify coding for better layout.
 
+#### Project Board Overview:
+
+**START OF SPRINT 3**
+
+![image-20201007114454629](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201007114454629.png)
+
+**END OF SPRINT 3**
+
+![image-20201007114520214](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201007114520214.png)
+
 -----------------------------------------------------------------------------END OF SPRINT 3-------------------------------------------------------------------------------------
 
 
@@ -100,3 +132,15 @@ The goal of this project is to have a functional MVP where the user is able to:
 #### Class Diagram
 
 ![image-20201006151530298](C:\Users\d4w00\AppData\Roaming\Typora\typora-user-images\image-20201006151530298.png)
+
+
+
+
+
+### Final Project Retrospective
+
+**Liked:** Implement everything that was presented to us and learned from and make it work. Also having the freedom to pick out a problem which can be a real one and find a solution for it is something that feel very rewarding.
+
+**Learned:** Definitely try and ask for help first before trying to solve the issue on my own. Also, Make sure to plan out and brainstorm what my application should do and all the possible features it can have within the time frame prior to starting the project.
+
+**Disliked:** The time frame that was given was a bit shorter than desired. Also, start the project at the start of the week so that it does not roll over to the weekend as that was very exhausting: mentally and physically.
