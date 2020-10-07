@@ -38,13 +38,13 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 **START OF SPRINT 1**
 
-![image-20201001164921837](images/image-20201001164921837.png)
+![image-20201001164921837](/images/image-20201001164921837.png)
 
 
 
 **END OF SPRINT 1**
 
-![image-20201001164144705](images/image-20201001164144705.png)
+![image-20201001164144705](/images/image-20201001164144705.png)
 
 
 
@@ -91,13 +91,13 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 **START OF SPRINT 2**
 
-![image-20201007114315965](images/image-20201007114315965.png)
+![image-20201007114315965](/images/image-20201007114315965.png)
 
 
 
 **END OF SPRINT 2**
 
-![image-20201007114405262](images/image-20201007114405262.png)
+![image-20201007114405262](/images/image-20201007114405262.png)
 
 -----------------------------------------------------------------------------END OF SPRINT 2-------------------------------------------------------------------------------------
 
@@ -127,11 +127,11 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 **START OF SPRINT 3**
 
-![image-20201007114454629](images/image-20201007114454629.png)
+![image-20201007114454629](/images/image-20201007114454629.png)
 
 **END OF SPRINT 3**
 
-![image-20201007114520214](images/image-20201007114520214.png)
+![image-20201007114520214](/images/image-20201007114520214.png)
 
 -----------------------------------------------------------------------------END OF SPRINT 3-------------------------------------------------------------------------------------
 
@@ -139,7 +139,7 @@ The goal of this project is to have a functional MVP where the user is able to:
 
 #### Class Diagram
 
-![image-20201006151530298](images/image-20201006151530298.png)
+![image-20201006151530298](/images/image-20201006151530298.png)
 
 
 
