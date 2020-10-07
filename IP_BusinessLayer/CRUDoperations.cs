@@ -12,6 +12,8 @@ namespace IP_BusinessLayer
     {
         public Users EnteredUser { get; set; }
         public Overtime SelectedOvertime { get; set; }
+        public Admins EnteredAdmin { get; set; }
+        public Overtime EntTime { get; set; }
         public List<Users> RetrieveUsers()
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -34,6 +36,16 @@ namespace IP_BusinessLayer
             }
         }
 
+        public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours)
+        {
+            var newOvertime = new Overtime() { Day = day, StartTime = startTime, NumberOfHours = Convert.ToInt32(numberOfHours) };
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                db.Overtime.Add(newOvertime);
+                db.SaveChanges();
+            }
+        }
+
         public Users GetUserForUserName(string enteredUser)
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -41,6 +53,16 @@ namespace IP_BusinessLayer
                 var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
                 EnteredUser = user;
                 return EnteredUser;
+            }
+        }
+
+        public Admins GetAdmin(string enteredAdmin)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var admin = db.Admins.Where(a => a.AdminName == enteredAdmin).FirstOrDefault();
+                EnteredAdmin = admin;
+                return EnteredAdmin;
             }
         }
 
@@ -123,6 +145,15 @@ namespace IP_BusinessLayer
             }
         }
 
+        public List<Overtime> PopulateBookedOvertimeForAllUsers()
+        {
+            using(var db = new IndividualProject_DatabaseContext())
+            {
+                var users = db.Overtime.Where(o => o.UserId != null);
+                return users.ToList();
+            }
+        }
+
         public List<Overtime> PopulateAvailabelOvertime()
         {
             using (var db = new IndividualProject_DatabaseContext())
@@ -130,6 +161,54 @@ namespace IP_BusinessLayer
                 var available = db.Overtime.Where(o => o.UserId == null);
                 return available.ToList();
             }
+        }
+
+        public bool CheckForOverlap(Users enteredUser, object selectedOvertime)
+        {
+            using (var db = new IndividualProject_DatabaseContext())
+            {
+                var end = SelectedOvertime.StartTime + TimeSpan.Parse($"{SelectedOvertime.NumberOfHours}:00");
+                var bookedOvertimes = db.Overtime.Where(o => o.UserId == enteredUser.UserId);
+                var canBook = true;
+                if (bookedOvertimes.Count() > 0)
+                {
+                    TimeSpan? overtimeSlotEndTime;
+                    foreach (var overtimeSlot in bookedOvertimes)
+                    {
+                        overtimeSlotEndTime = overtimeSlot.StartTime + TimeSpan.Parse($"{overtimeSlot.NumberOfHours}:00");
+                        if (overtimeSlotEndTime < SelectedOvertime.StartTime)
+                        {
+                            if (!(overtimeSlotEndTime < SelectedOvertime.StartTime && overtimeSlot.StartTime < end) && overtimeSlot.Day == SelectedOvertime.Day)
+                            {
+                                canBook = false;
+                            }
+                        }
+                        else if(overtimeSlotEndTime > SelectedOvertime.StartTime)
+                        {
+                            if (!(overtimeSlotEndTime > SelectedOvertime.StartTime && overtimeSlot.StartTime > end) && overtimeSlot.Day == SelectedOvertime.Day)
+                            {
+                                canBook = false;
+                            }
+                        }
+                    }
+                    if (canBook)
+                    {
+                        SetUser_IDs(enteredUser);
+                    }
+                }
+                else if (bookedOvertimes.Count() == 0)
+                {
+                    SetUser_IDs(enteredUser);
+                }
+                return canBook;
+            }
+        }
+
+        public bool Overlaps(Users enteredUser, object selectedOvertime)
+        {
+            bool overlaps;
+            GetOvertime(selectedOvertime);
+            return CheckForOverlap(enteredUser, selectedOvertime) ? overlaps = true : overlaps = false;
         }
     }
 }

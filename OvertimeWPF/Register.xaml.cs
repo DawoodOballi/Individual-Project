@@ -35,6 +35,11 @@ namespace OvertimeWPF
             {
                 MessageBox.Show("The name you have entered is aleady used. Please try again");
             }
+            else if(txtNewUsername.Text == string.Empty)
+            {
+                LogInPage login = new LogInPage();
+                frame.Content = login;
+            }
             else
             {
                 _crud.Create(newUser);

@@ -1,18 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="IP_Booking_Overtime.Users">
-    <Position X="1.75" Y="1.25" Width="1.5" />
+  <Class Name="IP_Booking_Overtime.Overtime">
+    <Position X="1" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAEAAAAAAgAAAAAAAAAAQAAAAAAAAA=</HashCode>
-      <FileName>Users.cs</FileName>
+      <HashCode>AAABAAAAIAAAAAAEABAAAQgAIAAAAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Customizables\OvertimeCustomized.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="IP_Booking_Overtime.Overtime">
-    <Position X="5.75" Y="1.25" Width="1.5" />
+  <Class Name="IP_Booking_Overtime.Users">
+    <Position X="3.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAABAAAAIAAAAAAAABAAAQgAIAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Overtime.cs</FileName>
+      <HashCode>AAAAAAAAEAAAAAAEAAAAAQgAAAAAAAAAAwAAAAAAAAA=</HashCode>
+      <FileName>Customizables\UsersCustomized.cs</FileName>
     </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Overtime" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="IP_Booking_Overtime.Admins">
+    <Position X="6" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAEAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Admins.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Users" />
+    </ShowAsCollectionAssociation>
   </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
