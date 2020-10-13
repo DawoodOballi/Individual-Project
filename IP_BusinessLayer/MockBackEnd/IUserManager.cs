@@ -5,10 +5,11 @@ using System.Text;
 
 namespace IP_BusinessLayer.MockBackEnd
 {
-    interface IUserManager
+    public interface IUserManager
     {
         void AddUser(User item);
         User FindUser(string name);
+        int GetUserId(string name);
         void RemoveUser(string name);
         void CreateUsers(List<User> items);
     }

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace IP_BusinessLayer.MockBackEnd
 {
-    class UserManager : IUserManager
+    public class UserManager : IUserManager
     {
         private ExampleContext _db;
 
@@ -26,7 +26,14 @@ namespace IP_BusinessLayer.MockBackEnd
         {
             if (name == null || name == string.Empty) return null;
             name = name.ToLower();
-            return _db.User.Where(u => u.UserName.StartsWith(name)).FirstOrDefault();
+            return _db.User.Where(u => u.UserName.ToLower().StartsWith(name)).FirstOrDefault();
+        }
+
+        public int GetUserId(string name)
+        {
+            if (name == null || name == string.Empty) return 0;
+            name = name.ToLower();
+            return _db.User.Where(u => u.UserName.ToLower() == name).Select(u => u.UserId).FirstOrDefault();
         }
 
         public void RemoveUser(string name)
