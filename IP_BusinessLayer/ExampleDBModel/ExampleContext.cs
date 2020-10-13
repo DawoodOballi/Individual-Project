@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using IP_BusinessLayer.ExampleDBModel;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -12,6 +13,6 @@ namespace IP_Booking_Overtime.ExampleDBModel
         public ExampleContext(DbContextOptions<ExampleContext> options): base(options)
         { }
 
-        public virtual DbSet<Users> Users { get; set; }
+        public virtual DbSet<User> User { get; set; }
     }
 }

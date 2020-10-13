@@ -9,8 +9,4 @@
     <ProjectReference Include="..\IP_Booking_Overtime\IP_Booking_Overtime.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="MockBackEnd\" />
-  </ItemGroup>
-
 </Project>
