@@ -12,6 +12,7 @@ namespace BusinessLayerTesting.MockTests
     [TestFixture]
     public class UserManagerShould
     {
+        //Note: dont need an example context. Can use the actual context because were using InMemory.
         private UserManager _sut;
 
         [OneTimeSetUp]

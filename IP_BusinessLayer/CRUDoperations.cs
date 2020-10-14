@@ -22,18 +22,26 @@ namespace IP_BusinessLayer
             }
         }
 
+        private IndividualProject_DatabaseContext _dbContext;
+
+        public CRUDoperations() {
+            _dbContext = new IndividualProject_DatabaseContext();
+        }
+
+        public CRUDoperations(IndividualProject_DatabaseContext db)
+        {
+            _dbContext = db;
+        }
+
         public void Create(string enteredUserName)
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                EnteredUser = db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
+                EnteredUser = _dbContext.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
                 if(EnteredUser == null)
                 {
                     Users newUser = new Users { UserName = enteredUserName };
                     db.Users.Add(newUser);
                     db.SaveChanges();
                 }
-            }
         }
 
         public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours)
