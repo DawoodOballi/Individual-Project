@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Remoting;
 using IP_Booking_Overtime;
+using IP_BusinessLayer;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,56 +23,69 @@ namespace IP_BusinessLayer
             }
         }
 
-        private IndividualProject_DatabaseContext _dbContext;
+        private IndividualProject_DatabaseContext _db;
 
         public CRUDoperations() {
-            _dbContext = new IndividualProject_DatabaseContext();
+            _db = new IndividualProject_DatabaseContext();
         }
 
         public CRUDoperations(IndividualProject_DatabaseContext db)
         {
-            _dbContext = db;
+            _db = db;
+        }
+
+        public void CreateUsers(List<Users> list)
+        {
+            _db.Users.AddRange(list);
+            _db.SaveChanges();
         }
 
         public void Create(string enteredUserName)
         {
-                EnteredUser = _dbContext.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
+                EnteredUser = _db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
                 if(EnteredUser == null)
                 {
                     Users newUser = new Users { UserName = enteredUserName };
-                    db.Users.Add(newUser);
-                    db.SaveChanges();
+                    _db.Users.Add(newUser);
+                    _db.SaveChanges();
                 }
+        }
+
+        public void AddUser(Users user)
+        {
+            _db.Users.Add(user);
+            _db.SaveChanges();
         }
 
         public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours)
         {
             var newOvertime = new Overtime() { Day = day, StartTime = startTime, NumberOfHours = Convert.ToInt32(numberOfHours) };
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                db.Overtime.Add(newOvertime);
-                db.SaveChanges();
-            }
+                _db.Overtime.Add(newOvertime);
+                _db.SaveChanges();
         }
 
         public Users GetUserForUserName(string enteredUser)
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
+                var user = _db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
                 EnteredUser = user;
                 return EnteredUser;
+        }
+
+        public void RemoveUser(string name)
+        {
+            var user = GetUserForUserName(name);
+            if(user != null)
+            {
+                _db.Users.Remove(user);
+                _db.SaveChanges();
             }
         }
 
         public Admins GetAdmin(string enteredAdmin)
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var admin = db.Admins.Where(a => a.AdminName == enteredAdmin).FirstOrDefault();
+                var admin = _db.Admins.Where(a => a.AdminName == enteredAdmin).FirstOrDefault();
                 EnteredAdmin = admin;
                 return EnteredAdmin;
-            }
         }
 
         public void GetOvertime(object selectedOvertime)
@@ -81,102 +95,70 @@ namespace IP_BusinessLayer
 
         public void SetUser_IDs(Users enteredUser)
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                SelectedOvertime = db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
+                SelectedOvertime = _db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
                 SelectedOvertime.UserId = enteredUser.UserId;
-                db.SaveChanges();
-            };
+                _db.SaveChanges();
         }
 
         public void RemoveUser_IDs()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                SelectedOvertime = db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
+                SelectedOvertime = _db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
                 SelectedOvertime.UserId = null;
-                db.SaveChanges();
-            }
+                _db.SaveChanges();
         }
 
         public List<Overtime> PopulateOvertimeForMonday()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.Day == "Monday" && o.UserId == null);
+                var user = _db.Overtime.Where(o => o.Day == "Monday" && o.UserId == null);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateOvertimeForTuesday()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.Day == "Tuesday" && o.UserId == null);
+                var user = _db.Overtime.Where(o => o.Day == "Tuesday" && o.UserId == null);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateOvertimeForWednesday()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.Day == "Wednesday" && o.UserId == null);
+                var user = _db.Overtime.Where(o => o.Day == "Wednesday" && o.UserId == null);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateOvertimeForThursday()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.Day == "Thursday" && o.UserId == null);
+                var user = _db.Overtime.Where(o => o.Day == "Thursday" && o.UserId == null);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateOvertimeForFriday()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.Day == "Friday" && o.UserId == null);
+                var user = _db.Overtime.Where(o => o.Day == "Friday" && o.UserId == null);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateBookedOvertime(Users userEntered)
         {
-            using(var db = new IndividualProject_DatabaseContext())
-            {
-                var user = db.Overtime.Where(o => o.UserId == userEntered.UserId);
+                var user = _db.Overtime.Where(o => o.UserId == userEntered.UserId);
                 return user.ToList();
-            }
         }
 
         public List<Overtime> PopulateBookedOvertimeForAllUsers()
         {
-            using(var db = new IndividualProject_DatabaseContext())
-            {
-                var users = db.Overtime.Where(o => o.UserId != null);
+                var users = _db.Overtime.Where(o => o.UserId != null);
                 return users.ToList();
-            }
         }
 
         public List<Overtime> PopulateAvailabelOvertime()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                var available = db.Overtime.Where(o => o.UserId == null);
+                var available = _db.Overtime.Where(o => o.UserId == null);
                 return available.ToList();
-            }
         }
 
         public bool CheckForOverlap(Users enteredUser, object selectedOvertime)
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
                 var end = SelectedOvertime.StartTime + TimeSpan.Parse($"{SelectedOvertime.NumberOfHours}:00");
-                var bookedOvertimes = db.Overtime.Where(o => o.UserId == enteredUser.UserId);
+                var bookedOvertimes = _db.Overtime.Where(o => o.UserId == enteredUser.UserId);
                 var canBook = true;
                 if (bookedOvertimes.Count() > 0)
                 {
@@ -209,14 +191,12 @@ namespace IP_BusinessLayer
                     SetUser_IDs(enteredUser);
                 }
                 return canBook;
-            }
         }
 
         public bool Overlaps(Users enteredUser, object selectedOvertime)
         {
-            bool overlaps;
             GetOvertime(selectedOvertime);
-            return CheckForOverlap(enteredUser, selectedOvertime) ? overlaps = true : overlaps = false;
+            return CheckForOverlap(enteredUser, selectedOvertime) ?true : false;
         }
     }
 }
