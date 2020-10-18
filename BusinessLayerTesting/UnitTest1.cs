@@ -42,7 +42,7 @@ namespace BusinessLayerTesting
             using(var db = new IndividualProject_DatabaseContext())
             {
                 var numberOfUsersBefore = db.Users.Count();
-                _crud.Create("Dawood");
+                _crud.CreateUser("Dawood");
                 var numberOfUsersAfter = db.Users.Count();
                 Assert.AreEqual("Dawood", _crud.EnteredUser.UserName);
                 Assert.AreEqual(numberOfUsersAfter, numberOfUsersBefore);
@@ -55,7 +55,7 @@ namespace BusinessLayerTesting
             using (var db = new IndividualProject_DatabaseContext())
             {
                 var numberOfUsersBefore = db.Users.Count();
-                _crud.Create("Dawood");
+                _crud.CreateUser("Dawood");
                 var numberOfUsersAfter = db.Users.Count();
                 Assert.AreEqual(numberOfUsersAfter, numberOfUsersBefore);
             }
@@ -118,9 +118,9 @@ namespace BusinessLayerTesting
             {
                 var user = _crud.GetUserForUserName("Dawood");
                 object overtime = db.Overtime.Where(o => o.OvertimeId == 1).FirstOrDefault();
-                _crud.GetOvertime(overtime);
-                _crud.SetUser_IDs(user);
-                _crud.RemoveUser_IDs();
+                _crud.GetSelectedOvertime(overtime);
+                _crud.SetUser_IDs_ForBookedOvertime(user);
+                _crud.RemoveUser_IDs_FromBookedOvertime();
                 Assert.AreEqual(null, _crud.SelectedOvertime.UserId);
             }
         }
@@ -132,7 +132,7 @@ namespace BusinessLayerTesting
             {
                 var user = _crud.GetUserForUserName("Dawood");
                 object overtime = db.Overtime.Where(o => o.OvertimeId == 1).FirstOrDefault();
-                _crud.SetUser_IDs(user);
+                _crud.SetUser_IDs_ForBookedOvertime(user);
                 Assert.AreEqual(_crud.SelectedOvertime.UserId, user.UserId);
             }
         }

@@ -129,7 +129,7 @@ namespace OvertimeWPF
             }
             else
             {
-                _crudOperations.Create(newUser);
+                _crudOperations.CreateUser(newUser);
                 _crudOperations.GetUserForUserName(newUser);
                 MessageBox.Show($"The new user '{newUser}' has been created");
             }

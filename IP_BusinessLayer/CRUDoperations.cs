@@ -17,10 +17,7 @@ namespace IP_BusinessLayer
         public Overtime EntTime { get; set; }
         public List<Users> RetrieveUsers()
         {
-            using (var db = new IndividualProject_DatabaseContext())
-            {
-                return db.Users.ToList();
-            }
+                return _db.Users.ToList();
         }
 
         private IndividualProject_DatabaseContext _db;
@@ -40,7 +37,7 @@ namespace IP_BusinessLayer
             _db.SaveChanges();
         }
 
-        public void Create(string enteredUserName)
+        public void CreateUser(string enteredUserName)
         {
                 EnteredUser = _db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
                 if(EnteredUser == null)
@@ -88,19 +85,19 @@ namespace IP_BusinessLayer
                 return EnteredAdmin;
         }
 
-        public void GetOvertime(object selectedOvertime)
+        public void GetSelectedOvertime(object selectedOvertime)
         {
             SelectedOvertime = (Overtime)selectedOvertime;
         }
 
-        public void SetUser_IDs(Users enteredUser)
+        public void SetUser_IDs_ForBookedOvertime(Users enteredUser)
         {
                 SelectedOvertime = _db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
                 SelectedOvertime.UserId = enteredUser.UserId;
                 _db.SaveChanges();
         }
 
-        public void RemoveUser_IDs()
+        public void RemoveUser_IDs_FromBookedOvertime()
         {
                 SelectedOvertime = _db.Overtime.Where(o => o.OvertimeId == SelectedOvertime.OvertimeId).FirstOrDefault();
                 SelectedOvertime.UserId = null;
@@ -183,19 +180,19 @@ namespace IP_BusinessLayer
                     }
                     if (canBook)
                     {
-                        SetUser_IDs(enteredUser);
+                        SetUser_IDs_ForBookedOvertime(enteredUser);
                     }
                 }
                 else if (bookedOvertimes.Count() == 0)
                 {
-                    SetUser_IDs(enteredUser);
+                    SetUser_IDs_ForBookedOvertime(enteredUser);
                 }
                 return canBook;
         }
 
         public bool Overlaps(Users enteredUser, object selectedOvertime)
         {
-            GetOvertime(selectedOvertime);
+            GetSelectedOvertime(selectedOvertime);
             return CheckForOverlap(enteredUser, selectedOvertime) ?true : false;
         }
     }

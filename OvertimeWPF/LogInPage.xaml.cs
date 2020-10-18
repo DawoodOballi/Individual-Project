@@ -21,6 +21,10 @@ namespace OvertimeWPF
     public partial class LogInPage : Page
     {
         public CRUDoperations _crudOperation = new CRUDoperations();
+
+        public OvertimeManager overtimeManager = new OvertimeManager();
+
+        public UserManager userManager = new UserManager();
         public LogInPage()
         {
             InitializeComponent();
@@ -31,10 +35,10 @@ namespace OvertimeWPF
             if (comboxUserType.SelectedItem.ToString().Contains("User"))
             {
                 string userText = txtUsername.Text;
-                _crudOperation.GetUserForUserName(userText);
-                if (_crudOperation.EnteredUser != null)
+                userManager.GetUserForUserName(userText);
+                if (userManager.EnteredUser != null)
                 {
-                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                    MainPage main = new MainPage(txtUsername.Text, userManager.EnteredUser);
                     frame.Content = main;
                 }
                 else
@@ -75,10 +79,10 @@ namespace OvertimeWPF
                 if (comboxUserType.SelectedItem.ToString().Contains("User"))
                 {
                     string userText = txtUsername.Text;
-                    _crudOperation.GetUserForUserName(userText);
-                    if (_crudOperation.EnteredUser != null)
+                    userManager.GetUserForUserName(userText);
+                    if (userManager.EnteredUser != null)
                     {
-                        MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                        MainPage main = new MainPage(txtUsername.Text, userManager.EnteredUser);
                         frame.Content = main;
                     }
                     else

@@ -23,6 +23,8 @@ namespace OvertimeWPF
     {
         CRUDoperations _crudOperations = new CRUDoperations();
         Users _userEntered;
+        UserManager userManager = new UserManager();
+        OvertimeManager overtimeManager = new OvertimeManager();
         public MainPage(string user, Users userEntered)
         {
             InitializeComponent();
@@ -36,26 +38,28 @@ namespace OvertimeWPF
             {
                 if (_crudOperations.Overlaps(_userEntered, ListBox.SelectedItem) == true)
                 {
+                    overtimeManager.GetSelectedOvertime(ListBox.SelectedItem);
+                    overtimeManager.SetUser_IDs_ForBookedOvertime(_userEntered);
                     ListBox.ItemsSource = null;
-                    if (_crudOperations.SelectedOvertime.Day.Equals("Monday"))
+                    if (overtimeManager.SelectedOvertime.Day.Equals("Monday"))
                     {
-                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+                        ListBox.ItemsSource = overtimeManager.PopulateOvertimeForMonday();
                     }
-                    else if (_crudOperations.SelectedOvertime.Day.Equals("Tuesday"))
+                    else if (overtimeManager.SelectedOvertime.Day.Equals("Tuesday"))
                     {
-                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+                        ListBox.ItemsSource = overtimeManager.PopulateOvertimeForTuesday();
                     }
-                    else if (_crudOperations.SelectedOvertime.Day.Equals("Wednesday"))
+                    else if (overtimeManager.SelectedOvertime.Day.Equals("Wednesday"))
                     {
-                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+                        ListBox.ItemsSource = overtimeManager.PopulateOvertimeForWednesday();
                     }
-                    else if (_crudOperations.SelectedOvertime.Day.Equals("Thursday"))
+                    else if (overtimeManager.SelectedOvertime.Day.Equals("Thursday"))
                     {
-                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+                        ListBox.ItemsSource = overtimeManager.PopulateOvertimeForThursday();
                     }
-                    else if (_crudOperations.SelectedOvertime.Day.Equals("Friday"))
+                    else if (overtimeManager.SelectedOvertime.Day.Equals("Friday"))
                     {
-                        ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+                        ListBox.ItemsSource = overtimeManager.PopulateOvertimeForFriday();
                     }
                 }
                 else
@@ -78,10 +82,9 @@ namespace OvertimeWPF
         {
             if (ListBox.SelectedItem != null)
             {
-                _crudOperations.GetOvertime(ListBox.SelectedItem);
-                _crudOperations.RemoveUser_IDs();
+                overtimeManager.RemoveUser_IDs_FromBookedOvertime(ListBox.SelectedItem);
                 ListBox.ItemsSource = null;
-                ListBox.ItemsSource = _crudOperations.PopulateBookedOvertime(_userEntered);
+                ListBox.ItemsSource = overtimeManager.PopulateBookedOvertime(_userEntered);
             }
             else
             {
@@ -96,37 +99,37 @@ namespace OvertimeWPF
 
         private void btnBookedOvertime_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateBookedOvertime(_userEntered);
+            ListBox.ItemsSource = overtimeManager.PopulateBookedOvertime(_userEntered);
         }
 
         private void btnAvailableOvertime_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateAvailabelOvertime();
+            ListBox.ItemsSource = overtimeManager.PopulateAvailabelOvertime();
         }
 
         private void btnMonday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForMonday();
+            ListBox.ItemsSource = overtimeManager.PopulateOvertimeForMonday();
         }
 
         private void btnTuesday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForTuesday();
+            ListBox.ItemsSource = overtimeManager.PopulateOvertimeForTuesday();
         }
 
         private void btnWednesday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForWednesday();
+            ListBox.ItemsSource = overtimeManager.PopulateOvertimeForWednesday();
         }
 
         private void btnThursday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForThursday();
+            ListBox.ItemsSource = overtimeManager.PopulateOvertimeForThursday();
         }
 
         private void btnFriday_Click(object sender, RoutedEventArgs e)
         {
-            ListBox.ItemsSource = _crudOperations.PopulateOvertimeForFriday();
+            ListBox.ItemsSource = overtimeManager.PopulateOvertimeForFriday();
         }
     }
 }
