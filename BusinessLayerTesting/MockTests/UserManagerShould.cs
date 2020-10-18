@@ -13,7 +13,7 @@ namespace BusinessLayerTesting.MockTests
     public class UserManagerShould
     {
         //Note: dont need an example context. Can use the actual context because were using InMemory.
-        private CRUDoperations _sut;
+        private UserManager _sut;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -22,7 +22,7 @@ namespace BusinessLayerTesting.MockTests
                 .UseInMemoryDatabase(databaseName: "IP_DB")
                 .Options;
             var context = new IndividualProject_DatabaseContext(options);
-            _sut = new CRUDoperations(context);
+            _sut = new UserManager(context);
             _sut.CreateUsers(new List<Users>
             {
                 new Users() {UserId = 1, UserName = "Dawood"},

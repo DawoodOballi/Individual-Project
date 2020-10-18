@@ -28,7 +28,7 @@ namespace IP_BusinessLayer
 
         public void CreateUser(string enteredUserName)
         {
-            EnteredUser = _db.Users.Where(u => u.UserName == enteredUserName).FirstOrDefault();
+            GetUserForUserName(enteredUserName);
             if (EnteredUser == null)
             {
                 Users newUser = new Users { UserName = enteredUserName };
@@ -43,19 +43,18 @@ namespace IP_BusinessLayer
             _db.SaveChanges();
         }
 
-        public Users GetUserForUserName(string enteredUser)
+        public Users GetUserForUserName(string enteredUserNamer)
+
         {
-            var user = _db.Users.Where(u => u.UserName == enteredUser).FirstOrDefault();
-            EnteredUser = user;
-            return EnteredUser;
+            return EnteredUser = _db.Users.Where(u => u.UserName == enteredUserNamer).FirstOrDefault();
         }
 
-        public void RemoveUser(string name)
+        public void RemoveUser(string enteredUserName)
         {
-            var user = GetUserForUserName(name);
-            if (user != null)
+            GetUserForUserName(enteredUserName);
+            if (EnteredUser != null)
             {
-                _db.Users.Remove(user);
+                _db.Users.Remove(EnteredUser);
                 _db.SaveChanges();
             }
         }

@@ -23,7 +23,9 @@ namespace IP_BusinessLayer
         public Overtime SelectedOvertime { get; set; }
         public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours)
         {
-            throw new NotImplementedException();
+            var newOvertime = new Overtime() { Day = day, StartTime = startTime, NumberOfHours = Convert.ToInt32(numberOfHours) };
+            _db.Overtime.Add(newOvertime);
+            _db.SaveChanges();
         }
 
         public void GetSelectedOvertime(object selectedOvertime)
@@ -39,44 +41,44 @@ namespace IP_BusinessLayer
 
         public List<Overtime> PopulateBookedOvertime(Users userEntered)
         {
-            var user = _db.Overtime.Where(o => o.UserId == userEntered.UserId);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.UserId == userEntered.UserId);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateBookedOvertimeForAllUsers()
         {
-            var users = _db.Overtime.Where(o => o.UserId != null);
-            return users.ToList();
+            var overtime = _db.Overtime.Where(o => o.UserId != null);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateOvertimeForFriday()
         {
-            var user = _db.Overtime.Where(o => o.Day == "Friday" && o.UserId == null);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.Day == "Friday" && o.UserId == null);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateOvertimeForMonday()
         {
-            var user = _db.Overtime.Where(o => o.Day == "Monday" && o.UserId == null);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.Day == "Monday" && o.UserId == null);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateOvertimeForThursday()
         {
-            var user = _db.Overtime.Where(o => o.Day == "Thursday" && o.UserId == null);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.Day == "Thursday" && o.UserId == null);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateOvertimeForTuesday()
         {
-            var user = _db.Overtime.Where(o => o.Day == "Tueday" && o.UserId == null);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.Day == "Tuesday" && o.UserId == null);
+            return overtime.ToList();
         }
 
         public List<Overtime> PopulateOvertimeForWednesday()
         {
-            var user = _db.Overtime.Where(o => o.Day == "Wednesday" && o.UserId == null);
-            return user.ToList();
+            var overtime = _db.Overtime.Where(o => o.Day == "Wednesday" && o.UserId == null);
+            return overtime.ToList();
         }
 
         public void RemoveUser_IDs_FromBookedOvertime(object selectedOvertime)
@@ -88,7 +90,7 @@ namespace IP_BusinessLayer
 
         public void SetUser_IDs_ForBookedOvertime(Users enteredUser)
         {
-            GetSelectedOvertime(SelectedOvertime);
+            //GetSelectedOvertime(SelectedOvertime);
             SelectedOvertime.UserId = enteredUser.UserId;
             _db.SaveChanges();
         }
