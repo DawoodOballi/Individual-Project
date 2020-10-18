@@ -9,7 +9,7 @@ namespace IP_BusinessLayer
     {
         public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours);
         public void GetSelectedOvertime(object selectedOvertime);
-        public void SetUser_IDs_ForBookedOvertime(Users enteredUser);
+        public void SetUser_IDs_ForBookedOvertime(Users enteredUser, object selectedOvertime);
         public void RemoveUser_IDs_FromBookedOvertime(object selectedOvertime);
         public List<Overtime> PopulateOvertimeForMonday();
         public List<Overtime> PopulateOvertimeForTuesday();
@@ -19,5 +19,6 @@ namespace IP_BusinessLayer
         public List<Overtime> PopulateBookedOvertime(Users userEntered);
         public List<Overtime> PopulateBookedOvertimeForAllUsers();
         public List<Overtime> PopulateAvailabelOvertime();
+        public bool CheckForOverlap(Users enteredUser, object selectedOvertime);
     }
 }

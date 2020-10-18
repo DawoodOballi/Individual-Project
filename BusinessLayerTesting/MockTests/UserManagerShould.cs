@@ -13,7 +13,7 @@ namespace BusinessLayerTesting.MockTests
     public class UserManagerShould
     {
         //Note: dont need an example context. Can use the actual context because were using InMemory.
-        private UserManager _sut;
+        private UserManager userManager;
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
@@ -22,8 +22,8 @@ namespace BusinessLayerTesting.MockTests
                 .UseInMemoryDatabase(databaseName: "IP_DB")
                 .Options;
             var context = new IndividualProject_DatabaseContext(options);
-            _sut = new UserManager(context);
-            _sut.CreateUsers(new List<Users>
+            userManager = new UserManager(context);
+            userManager.CreateUsers(new List<Users>
             {
                 new Users() {UserId = 1, UserName = "Dawood"},
                 new Users() {UserId = 2, UserName = "Darren"},
@@ -38,19 +38,19 @@ namespace BusinessLayerTesting.MockTests
         [Test]
         public void GivenAValidUserName_Returns_AUsersObject()
         {
-            Assert.That(_sut.GetUserForUserName("Dawood"), Is.InstanceOf<Users>());
+            Assert.That(userManager.GetUserForUserName("Dawood"), Is.InstanceOf<Users>());
         }
 
         [Test]
         public void GivenANewUser_ItGetsAddedToTheDatabase()
         {
-            var item = new Users() { UserId = 8, UserName = "Bob" };
-            Assert.That(_sut.GetUserForUserName("Bob"), Is.Null);
-            _sut.AddUser(item);
-            var theItem = _sut.GetUserForUserName("Bob");
-            Assert.That(theItem.UserName, Is.EqualTo("Bob"));
-            Assert.That(theItem.UserId, Is.EqualTo(8));
-            _sut.RemoveUser("Bob");
+            var item = new Users() { UserName = "Bob" };
+            Assert.That(userManager.GetUserForUserName("Bob"), Is.Null);
+            userManager.CreateUser(item.UserName);
+            var addedItem = userManager.GetUserForUserName("Bob");
+            Assert.That(addedItem.UserName, Is.EqualTo("Bob"));
+            Assert.That(addedItem.UserId, Is.EqualTo(8));
+            userManager.RemoveUser("Bob");
         }
     }
 }

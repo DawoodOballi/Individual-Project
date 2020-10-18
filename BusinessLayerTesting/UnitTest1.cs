@@ -9,6 +9,7 @@ namespace BusinessLayerTesting
     {
         UserManager userManager = new UserManager();
         OvertimeManager overtimeManager = new OvertimeManager();
+        AdminManager adminManager = new AdminManager();
         IndividualProject_DatabaseContext db = new IndividualProject_DatabaseContext();
 
 
@@ -92,7 +93,7 @@ namespace BusinessLayerTesting
         {
             var user = userManager.GetUserForUserName("Dawood");
             object overtime = db.Overtime.Where(o => o.OvertimeId == user.UserId).FirstOrDefault();
-            overtimeManager.SetUser_IDs_ForBookedOvertime(user);
+            overtimeManager.SetUser_IDs_ForBookedOvertime(user, overtime);
             overtimeManager.RemoveUser_IDs_FromBookedOvertime(overtime);
             Assert.AreEqual(null, overtimeManager.SelectedOvertime.UserId);
         }
@@ -102,14 +103,14 @@ namespace BusinessLayerTesting
         {
             var user = userManager.GetUserForUserName("Dawood");
             object overtime = db.Overtime.Where(o => o.OvertimeId == 1).FirstOrDefault();
-            userManager.SetUser_IDs_ForBookedOvertime(user);
-            Assert.AreEqual(userManager.SelectedOvertime.UserId, user.UserId);
+            overtimeManager.SetUser_IDs_ForBookedOvertime(user, overtime);
+            Assert.AreEqual(overtimeManager.SelectedOvertime.UserId, user.UserId);
         }
 
         [Test]
         public void WhenEnteredAdminIsInDatabase_AnAdminObjectIsReturnedWithTheirName()
         {
-            var admin = userManager.GetAdmin("Cathy");
+            var admin = adminManager.GetAdmin("Cathy");
             Assert.AreEqual("Cathy", admin.AdminName);
 
         }
@@ -117,7 +118,7 @@ namespace BusinessLayerTesting
         [Test]
         public void WhenEnteredAdminIsNotInDatabase_NullIsReturned()
         {
-            var admin = userManager.GetAdmin("Dawood");
+            var admin = adminManager.GetAdmin("Dawood");
             Assert.AreEqual(null, admin);
 
         }
@@ -127,7 +128,7 @@ namespace BusinessLayerTesting
         {
             var user = userManager.GetUserForUserName("Dawood");
             object overtime = db.Overtime.Where(o => o.OvertimeId == 3).FirstOrDefault();
-            bool overlaps = userManager.Overlaps(user, overtime);
+            bool overlaps = overtimeManager.CheckForOverlap(user, overtime);
             Assert.AreEqual(false, overlaps);
 
         }
@@ -138,7 +139,7 @@ namespace BusinessLayerTesting
 
             var user = userManager.GetUserForUserName("Dawood");
             object overtime = db.Overtime.Where(o => o.OvertimeId == 7).FirstOrDefault();
-            bool overlaps = userManager.Overlaps(user, overtime);
+            bool overlaps = overtimeManager.CheckForOverlap(user, overtime);
             Assert.AreEqual(true, overlaps);
 
         }

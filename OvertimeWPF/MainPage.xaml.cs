@@ -21,7 +21,6 @@ namespace OvertimeWPF
     /// </summary>
     public partial class MainPage : Page
     {
-        CRUDoperations _crudOperations = new CRUDoperations();
         Users _userEntered;
         UserManager userManager = new UserManager();
         OvertimeManager overtimeManager = new OvertimeManager();
@@ -36,10 +35,9 @@ namespace OvertimeWPF
         {
             if (ListBox.SelectedItem != null)
             {
-                if (_crudOperations.Overlaps(_userEntered, ListBox.SelectedItem) == true)
+                if (overtimeManager.CheckForOverlap(_userEntered, ListBox.SelectedItem) == true)
                 {
-                    overtimeManager.GetSelectedOvertime(ListBox.SelectedItem);
-                    overtimeManager.SetUser_IDs_ForBookedOvertime(_userEntered);
+                    overtimeManager.SetUser_IDs_ForBookedOvertime(_userEntered, ListBox.SelectedItem);
                     ListBox.ItemsSource = null;
                     if (overtimeManager.SelectedOvertime.Day.Equals("Monday"))
                     {

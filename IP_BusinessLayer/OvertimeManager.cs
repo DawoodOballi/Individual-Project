@@ -88,11 +88,50 @@ namespace IP_BusinessLayer
             _db.SaveChanges();
         }
 
-        public void SetUser_IDs_ForBookedOvertime(Users enteredUser)
+        public void SetUser_IDs_ForBookedOvertime(Users enteredUser, object selectedOvertime)
         {
-            //GetSelectedOvertime(SelectedOvertime);
+            GetSelectedOvertime(selectedOvertime);
             SelectedOvertime.UserId = enteredUser.UserId;
             _db.SaveChanges();
+        }
+
+        public bool CheckForOverlap(Users enteredUser, object selectedOvertime)
+        {
+            GetSelectedOvertime(selectedOvertime);
+            var selectedOvertime_EndTime = SelectedOvertime.StartTime + TimeSpan.Parse($"{SelectedOvertime.NumberOfHours}:00");
+            var bookedOvertimes = _db.Overtime.Where(o => o.UserId == enteredUser.UserId);
+            var canBook = true;
+            if (bookedOvertimes.Count() > 0)
+            {
+                TimeSpan? bookedOvertimeSlotEndTime;
+                foreach (var bookedOvertimeSlot in bookedOvertimes)
+                {
+                    bookedOvertimeSlotEndTime = bookedOvertimeSlot.StartTime + TimeSpan.Parse($"{bookedOvertimeSlot.NumberOfHours}:00");
+                    if (bookedOvertimeSlotEndTime < SelectedOvertime.StartTime)
+                    {
+                        if (!(bookedOvertimeSlotEndTime < SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime < selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
+                        {
+                            canBook = false;
+                        }
+                    }
+                    else if (bookedOvertimeSlotEndTime > SelectedOvertime.StartTime)
+                    {
+                        if (!(bookedOvertimeSlotEndTime > SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime > selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
+                        {
+                            canBook = false;
+                        }
+                    }
+                }
+                if (canBook)
+                {
+                    SetUser_IDs_ForBookedOvertime(enteredUser, selectedOvertime);
+                }
+            }
+            else if (bookedOvertimes.Count() == 0)
+            {
+                SetUser_IDs_ForBookedOvertime(enteredUser, selectedOvertime);
+            }
+            return canBook;
         }
     }
 }
