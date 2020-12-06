@@ -53,40 +53,40 @@ namespace BusinessLayerTesting
             Assert.AreEqual(numberOfUsersAfter, numberOfUsersBefore);
         }
 
-        [Test]
-        public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnMonday()
-        {
-            var useritems = overtimeManager.PopulateOvertimeForMonday();
-            Assert.AreEqual("Monday", useritems[0].Day);
-        }
+        //[Test]
+        //public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnMonday()
+        //{
+        //    var useritems = overtimeManager.PopulateOvertimeForMonday();
+        //    Assert.AreEqual("Monday", useritems[0].Day);
+        //}
 
-        [Test]
-        public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnTuesday()
-        {
-            var useritems = overtimeManager.PopulateOvertimeForTuesday();
-            Assert.AreEqual("Tuesday", useritems[0].Day);
-        }
+        //[Test]
+        //public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnTuesday()
+        //{
+        //    var useritems = overtimeManager.PopulateOvertimeForTuesday();
+        //    Assert.AreEqual("Tuesday", useritems[0].Day);
+        //}
 
-        [Test]
-        public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnWednesday()
-        {
-            var useritems = overtimeManager.PopulateOvertimeForWednesday();
-            Assert.AreEqual("Wednesday", useritems[0].Day);
-        }
+        //[Test]
+        //public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnWednesday()
+        //{
+        //    var useritems = overtimeManager.PopulateOvertimeForWednesday();
+        //    Assert.AreEqual("Wednesday", useritems[0].Day);
+        //}
 
-        [Test]
-        public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnThursday()
-        {
-            var useritems = overtimeManager.PopulateOvertimeForThursday();
-            Assert.AreEqual("Thursday", useritems[0].Day);
-        }
+        //[Test]
+        //public void WhenPopulateOvertimeFor_Monday_ThenOnlyPopulateListForAvailableOvertimesOnThursday()
+        //{
+        //    var useritems = overtimeManager.PopulateOvertimeForThursday();
+        //    Assert.AreEqual("Thursday", useritems[0].Day);
+        //}
 
-        [Test]
-        public void WhenPopulateOvertimeFor_Friday_ThenOnlyPopulateListForAvailableOvertimesOnFriday()
-        {
-            var useritems = overtimeManager.PopulateOvertimeForFriday();
-            Assert.AreEqual("Friday", useritems[0].Day);
-        }
+        //[Test]
+        //public void WhenPopulateOvertimeFor_Friday_ThenOnlyPopulateListForAvailableOvertimesOnFriday()
+        //{
+        //    var useritems = overtimeManager.PopulateOvertimeForFriday();
+        //    Assert.AreEqual("Friday", useritems[0].Day);
+        //}
 
         [Test]
         public void WhenSelectedItemIsBookedAndCancelIsClicked_ThenRemnoveTheUserIdConnectionToTheSelectedSlot()
@@ -107,21 +107,21 @@ namespace BusinessLayerTesting
             Assert.AreEqual(overtimeManager.SelectedOvertime.UserId, user.UserId);
         }
 
-        [Test]
-        public void WhenEnteredAdminIsInDatabase_AnAdminObjectIsReturnedWithTheirName()
-        {
-            var admin = adminManager.GetAdmin("Cathy");
-            Assert.AreEqual("Cathy", admin.AdminName);
+        //[Test]
+        //public void WhenEnteredAdminIsInDatabase_AnAdminObjectIsReturnedWithTheirName()
+        //{
+        //    var admin = adminManager.GetAdmin("Cathy");
+        //    Assert.AreEqual("Cathy", admin.AdminName);
 
-        }
+        //}
 
-        [Test]
-        public void WhenEnteredAdminIsNotInDatabase_NullIsReturned()
-        {
-            var admin = adminManager.GetAdmin("Dawood");
-            Assert.AreEqual(null, admin);
+        //[Test]
+        //public void WhenEnteredAdminIsNotInDatabase_NullIsReturned()
+        //{
+        //    var admin = adminManager.GetAdmin("Dawood");
+        //    Assert.AreEqual(null, admin);
 
-        }
+        //}
 
         [Test]
         public void WhenSelectedOvertimeOverlaps_FalseIsReturned()

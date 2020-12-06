@@ -28,9 +28,32 @@ namespace IP_BusinessLayer
             _db.SaveChanges();
         }
 
-        public void GetSelectedOvertime(object selectedOvertime)
+        public void RemoveOvertime(object selectedOvertime)
+        {
+            GetSelectedOvertime(selectedOvertime);
+            if(SelectedOvertime != null)
+            {
+                _db.Overtime.Remove(SelectedOvertime);
+                _db.SaveChanges();
+            }
+        }
+
+        public void CreateOvertimeList(List<Overtime> overtimes)
+        {
+            _db.Overtime.AddRange(overtimes);
+            _db.SaveChanges();
+        }
+
+        public virtual void GetSelectedOvertime(object selectedOvertime)
         {
             SelectedOvertime = (Overtime)selectedOvertime;
+        }
+
+        public virtual Overtime GetOvertime(int id)
+        {
+            var selectedOvertime = _db.Overtime.Where(o => o.OvertimeId == id).FirstOrDefault();
+            GetSelectedOvertime(selectedOvertime);
+            return selectedOvertime;
         }
 
         public List<Overtime> PopulateAvailabelOvertime()
@@ -99,28 +122,13 @@ namespace IP_BusinessLayer
         {
             GetSelectedOvertime(selectedOvertime);
             var selectedOvertime_EndTime = SelectedOvertime.StartTime + TimeSpan.Parse($"{SelectedOvertime.NumberOfHours}:00");
-            var bookedOvertimes = _db.Overtime.Where(o => o.UserId == enteredUser.UserId);
+            var bookedOvertimes = PopulateBookedOvertime(enteredUser);
             var canBook = true;
             if (bookedOvertimes.Count() > 0)
             {
-                TimeSpan? bookedOvertimeSlotEndTime;
                 foreach (var bookedOvertimeSlot in bookedOvertimes)
                 {
-                    bookedOvertimeSlotEndTime = bookedOvertimeSlot.StartTime + TimeSpan.Parse($"{bookedOvertimeSlot.NumberOfHours}:00");
-                    if (bookedOvertimeSlotEndTime < SelectedOvertime.StartTime)
-                    {
-                        if (!(bookedOvertimeSlotEndTime < SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime < selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
-                        {
-                            canBook = false;
-                        }
-                    }
-                    else if (bookedOvertimeSlotEndTime > SelectedOvertime.StartTime)
-                    {
-                        if (!(bookedOvertimeSlotEndTime > SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime > selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
-                        {
-                            canBook = false;
-                        }
-                    }
+                   canBook = CanBook(selectedOvertime_EndTime, bookedOvertimeSlot);
                 }
                 if (canBook)
                 {
@@ -131,6 +139,28 @@ namespace IP_BusinessLayer
             {
                 SetUser_IDs_ForBookedOvertime(enteredUser, selectedOvertime);
             }
+            return canBook;
+        }
+
+        private bool CanBook(TimeSpan? selectedOvertime_EndTime, Overtime bookedOvertimeSlot)
+        {
+            var canBook = true;
+            TimeSpan? bookedOvertimeSlotEndTime = bookedOvertimeSlot.StartTime + TimeSpan.Parse($"{bookedOvertimeSlot.NumberOfHours}:00");
+            if (bookedOvertimeSlotEndTime < SelectedOvertime.StartTime)
+            {
+                if (!(bookedOvertimeSlotEndTime < SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime < selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
+                {
+                    canBook = false;
+                }
+            }
+            else if (bookedOvertimeSlotEndTime > SelectedOvertime.StartTime)
+            {
+                if (!(bookedOvertimeSlotEndTime > SelectedOvertime.StartTime && bookedOvertimeSlot.StartTime > selectedOvertime_EndTime) && bookedOvertimeSlot.Day == SelectedOvertime.Day)
+                {
+                    canBook = false;
+                }
+            }
+
             return canBook;
         }
     }

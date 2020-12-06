@@ -5,7 +5,7 @@ using System.Text;
 
 namespace IP_BusinessLayer
 {
-    interface IUserManager
+    public interface IUserManager
     {
         public List<Users> RetrieveUsers();
         public void CreateUsers(List<Users> list);

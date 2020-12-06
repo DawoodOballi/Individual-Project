@@ -5,10 +5,13 @@ using System.Text;
 
 namespace IP_BusinessLayer
 {
-    interface IOvertimeManager
+    public interface IOvertimeManager
     {
         public void CreateOvertime(string day, TimeSpan startTime, string numberOfHours);
+        public void RemoveOvertime(object selectedOvertime);
+        public void CreateOvertimeList(List<Overtime> overtimes);
         public void GetSelectedOvertime(object selectedOvertime);
+        public Overtime GetOvertime(int overtimeId);
         public void SetUser_IDs_ForBookedOvertime(Users enteredUser, object selectedOvertime);
         public void RemoveUser_IDs_FromBookedOvertime(object selectedOvertime);
         public List<Overtime> PopulateOvertimeForMonday();
