@@ -27,5 +27,12 @@
       <Property Name="Users" />
     </ShowAsCollectionAssociation>
   </Class>
+  <Class Name="IP_Booking_Overtime.IndividualProject_DatabaseContext">
+    <Position X="6" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAQAQAAAAAAAAAQAAEAAAAAAAAgAAAAAAAAA=</HashCode>
+      <FileName>IndividualProject_DatabaseContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

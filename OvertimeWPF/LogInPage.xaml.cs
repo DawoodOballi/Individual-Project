@@ -20,7 +20,11 @@ namespace OvertimeWPF
     /// </summary>
     public partial class LogInPage : Page
     {
-        public CRUDoperations _crudOperation = new CRUDoperations();
+        public AdminManager adminManager = new AdminManager();
+
+        public OvertimeManager overtimeManager = new OvertimeManager();
+
+        public UserManager userManager = new UserManager();
         public LogInPage()
         {
             InitializeComponent();
@@ -31,10 +35,10 @@ namespace OvertimeWPF
             if (comboxUserType.SelectedItem.ToString().Contains("User"))
             {
                 string userText = txtUsername.Text;
-                _crudOperation.GetUserForUserName(userText);
-                if (_crudOperation.EnteredUser != null)
+                userManager.GetUserForUserName(userText);
+                if (userManager.EnteredUser != null)
                 {
-                    MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                    MainPage main = new MainPage(txtUsername.Text, userManager.EnteredUser);
                     frame.Content = main;
                 }
                 else
@@ -45,10 +49,10 @@ namespace OvertimeWPF
             else if (comboxUserType.SelectedItem.ToString().Contains("Admin"))
             {
                 string userText = txtUsername.Text;
-                _crudOperation.GetAdmin(userText);
-                if (_crudOperation.EnteredAdmin != null)
+                adminManager.GetAdmin(userText);
+                if (adminManager.EnteredAdmin != null)
                 {
-                    AdminPage main = new AdminPage(txtUsername.Text, _crudOperation.EnteredAdmin);
+                    AdminPage main = new AdminPage(txtUsername.Text, adminManager.EnteredAdmin);
                     frame.Content = main;
                 }
                 else
@@ -75,10 +79,10 @@ namespace OvertimeWPF
                 if (comboxUserType.SelectedItem.ToString().Contains("User"))
                 {
                     string userText = txtUsername.Text;
-                    _crudOperation.GetUserForUserName(userText);
-                    if (_crudOperation.EnteredUser != null)
+                    userManager.GetUserForUserName(userText);
+                    if (userManager.EnteredUser != null)
                     {
-                        MainPage main = new MainPage(txtUsername.Text, _crudOperation.EnteredUser);
+                        MainPage main = new MainPage(txtUsername.Text, userManager.EnteredUser);
                         frame.Content = main;
                     }
                     else
@@ -89,10 +93,10 @@ namespace OvertimeWPF
                 else if (comboxUserType.SelectedItem.ToString().Contains("Admin"))
                 {
                     string userText = txtUsername.Text;
-                    _crudOperation.GetAdmin(userText);
-                    if (_crudOperation.EnteredAdmin != null)
+                    adminManager.GetAdmin(userText);
+                    if (adminManager.EnteredAdmin != null)
                     {
-                        AdminPage main = new AdminPage(txtUsername.Text, _crudOperation.EnteredAdmin);
+                        AdminPage main = new AdminPage(txtUsername.Text, adminManager.EnteredAdmin);
                         frame.Content = main;
                     }
                     else
